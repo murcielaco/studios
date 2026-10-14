@@ -2,56 +2,61 @@
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ----- Hero energy field: light streaks rushing past, like motion trails -----
+  // ----- Hero wireframe field: a dark-grey 3D mesh, slowly breathing like a scanned surface -----
   const cv = document.querySelector('.hero__field');
   if (cv) {
     const ctx = cv.getContext('2d');
-    const COLORS = ['0,191,99', '0,191,99', '0,191,99', '140,82,255', '255,80,49'];
-    let w = 0, h = 0, dpr = 1, streaks = [], raf = 0, visible = true;
-    const make = (initial) => ({
-      x: initial ? Math.random() * w : w + Math.random() * w * 0.4,
-      y: Math.random() * h,
-      len: 80 + Math.random() * 380,
-      v: 500 + Math.random() * 1400,
-      t: 0.6 + Math.random() * 2.2,
-      a: 0.15 + Math.random() * 0.55,
-      c: COLORS[(Math.random() * COLORS.length) | 0],
-    });
+    let w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now();
+    const NX = 46, NZ = 34;            // grid resolution
+    const SPAN = 26, DEPTH = 30;       // world size
     function size() {
       dpr = Math.min(devicePixelRatio || 1, 2);
       const r = cv.getBoundingClientRect(); w = r.width; h = r.height;
       cv.width = w * dpr; cv.height = h * dpr;
-      const n = Math.round(Math.min(110, w / 12));
-      streaks = Array.from({ length: n }, () => make(true));
     }
-    let last = performance.now();
-    function frame(now) {
-      const dt = Math.min(0.04, (now - last) / 1000); last = now;
+    const height = (x, z, t) =>
+      Math.sin(x * 0.35 + t * 0.25) * 0.55 +
+      Math.cos(z * 0.28 - t * 0.18) * 0.65 +
+      Math.sin((x + z) * 0.17 + t * 0.12) * 0.45;
+    function draw(now) {
+      const t = (now - t0) / 1000;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = 'lighter';
-      for (const s of streaks) {
-        s.x -= s.v * dt;
-        if (s.x + s.len < 0) Object.assign(s, make(false));
-        const g = ctx.createLinearGradient(s.x, 0, s.x + s.len, 0);
-        g.addColorStop(0, `rgba(${s.c},${s.a})`);
-        g.addColorStop(1, `rgba(${s.c},0)`);
-        ctx.strokeStyle = g; ctx.lineWidth = s.t;
-        ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x + s.len, s.y); ctx.stroke();
+      const f = Math.min(w, h * 1.6) * 0.9;           // focal length
+      const cx = w / 2, horizon = h * 0.34, camY = 3.2;
+      const scroll = (t * 0.6) % (DEPTH / NZ);        // slow drift toward the viewer
+      const P = [];
+      for (let j = 0; j < NZ; j++) {
+        const z = 2 + j * (DEPTH / NZ) - scroll;
+        const row = [];
+        for (let i = 0; i < NX; i++) {
+          const x = -SPAN / 2 + i * (SPAN / (NX - 1));
+          const y = height(x, z + t * 0.6, t);
+          row.push([cx + (x * f) / z, horizon + ((camY - y) * f) / z, z]);
+        }
+        P.push(row);
       }
-      ctx.globalCompositeOperation = 'source-over';
-      raf = visible ? requestAnimationFrame(frame) : 0;
+      ctx.lineWidth = 1;
+      const alpha = (z) => Math.max(0, Math.min(1, (DEPTH - z) / DEPTH)) * 0.42;
+      for (let j = 0; j < NZ; j++) {          // lines across
+        ctx.strokeStyle = `rgba(150,158,154,${alpha(P[j][0][2])})`;
+        ctx.beginPath();
+        P[j].forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+        ctx.stroke();
+      }
+      for (let i = 0; i < NX; i++) {          // lines in depth
+        ctx.beginPath();
+        for (let j = 0; j < NZ; j++) { const [x, y] = P[j][i]; j ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+        const g = ctx.createLinearGradient(0, h, 0, horizon);
+        g.addColorStop(0, 'rgba(150,158,154,.38)'); g.addColorStop(1, 'rgba(150,158,154,0)');
+        ctx.strokeStyle = g; ctx.stroke();
+      }
+      if (!reduce && visible) raf = requestAnimationFrame(draw); else raf = 0;
     }
     size();
-    new ResizeObserver(size).observe(cv);
-    if (reduce) { last = performance.now(); frame(last + 16); cancelAnimationFrame(raf); raf = 0; }
-    else {
-      raf = requestAnimationFrame(frame);
-      new IntersectionObserver(([e]) => {
-        visible = e.isIntersecting;
-        if (visible && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
-      }).observe(cv);
-    }
+    new ResizeObserver(() => { size(); if (!raf) draw(performance.now()); }).observe(cv);
+    draw(performance.now());
+    if (!reduce) new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf) raf = requestAnimationFrame(draw); }).observe(cv);
   }
 
   // ----- Colorway switch: swaps the 360° video -----

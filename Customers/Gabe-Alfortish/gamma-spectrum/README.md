@@ -9,8 +9,9 @@ Static one-page site (HTML + CSS + JS, no build step). Status of the three model
 
 - Colors: Radioactive Green `#00BF63` (primary), Electric Purple `#8C52FF`, Fluorescent Orange `#FF5031`, Deep Black `#000000`.
 - Type: the guide specifies **Futura Md BT Italic** (commercial license). The site uses **Jost** italic (OFL), a free Futura-style geometric face, set in uppercase.
-  If the client licenses Futura for web, swap the `@font-face` files at the top of `styles.css`.
-  Technical labels use JetBrains Mono (OFL).
+  Every text on the site uses this one family (no secondary face). If the client licenses Futura Md BT for web,
+  drop the .woff2 files in `assets/fonts/` and point the `@font-face` rules at the top of `styles.css` to them.
+  (`jetbrains-mono-*.woff2` are leftovers from v1 and are no longer used.)
 - Logo: `assets/svg/spectrum-mark.svg`, `spectrum-wordmark.svg`, `spectrum-logo.svg` are vector traces of `logo.jpg`. The mark can face left or right (bidirectional per the guide).
 
 ## Structure
@@ -19,8 +20,8 @@ Static one-page site (HTML + CSS + JS, no build step). Status of the three model
 gamma-spectrum/
 ├── index.html
 ├── styles.css
-├── main.js      # hero light-streak canvas, colorway → 360° video switch, gallery lightbox, reveal
-├── music.js     # original electronic loop (WebAudio) for the hero Sound button
+├── main.js      # hero wireframe mesh (canvas), colorway → 360° video switch, gallery lightbox, reveal
+├── music.js     # original ambient sci-fi soundtrack (WebAudio): hum, pads, data blips, scanner sweeps
 └── assets/
     ├── fonts/   # Jost italic, JetBrains Mono (self-hosted)
     ├── svg/     # Spectrum logo (mark, wordmark, lockup), GAMMA MUSEUM "M", favicon
@@ -33,11 +34,14 @@ gamma-spectrum/
 
 ## Renders used
 
-| Model | Hero | Gallery (in order) | 360° videos |
+Order on the page: MARATHON (running) → SYNAPSE (barefoot training) → AM/PM (casual, collab with AM:PM Gallery, https://ampmgallery.com/).
+Official colorway names: Stone (white), Black, Lilac (purple), Oat (cream).
+
+| Model | Hero (floating, Stone) | Gallery (in order) | 360° videos (colorway buttons) |
 |---|---|---|---|
-| AM/PM | `AMPM (3)` | AMPM (2), ampm (8), AMPM (6), ampm (10), AMPM (1), ampm (9) | AMPM2 (purple), AMPM (white) |
-| MARATHON | `marathon (2)` | (3), (9), (1), (5), (10), (4) | MARATHON2 (white), MARATHON (black) |
-| SYNAPSE | `synapse (1)` | (3), (10), (2), (4), (7), (9) | SYNAPSE2 (white), SYNAPSE (black) |
+| MARATHON | client-supplied Stone render | (3), (9), (1), (5), (10), (4) | MARATHON2 = Stone, MARATHON = Black |
+| SYNAPSE | client-supplied Stone render | (3), (10), (2), (4), (7), (9) | SYNAPSE2 = Stone, SYNAPSE = Black |
+| AM/PM | client-supplied close-up | AMPM (2), ampm (8), AMPM (6), ampm (10), AMPM (1), ampm (9) | AMPM2 = Lilac, AMPM = Oat |
 
 ## Editing
 
