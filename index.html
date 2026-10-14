@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MURCIELACO STUDIOS Services</title>
+<meta name="description" content="Your own 3D printed footwear brand, approved on Zellerfeld and launch-ready in about one month. Designed by MURCIELACO STUDIOS.">
+<link rel="icon" href="assets/logo.png">
+<style>
+@font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-thin.woff2") format("woff2");font-weight:200;font-display:swap}
+@font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-light.woff2") format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Murcielaco Type";src:url("fonts/murcielaco-type-regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Murcielaco Type";src:url("fonts/murcielaco-type-black.woff2") format("woff2");font-weight:900;font-display:swap}
+/* Layout: pure black stage; shoes float in the dark, text keeps to a narrow rail, one liquid-chrome signal for details. */
+:root{
+  --void:#000000;
+  --hall:#0b0b0b;
+  --line:#1e1e1e;
+  --mist:#8e8e8e;
+  --bone:#f2f2f2;
+  --signal:#dfe3e8;
+  --chrome:linear-gradient(100deg,#5f646c 0%,#eef1f4 12%,#8b9098 24%,#ffffff 36%,#6e737b 48%,#d9dde2 60%,#7d828a 72%,#f6f8fa 84%,#5f646c 100%);
+  --display:"Metal Bat","Poppins",system-ui,sans-serif;
+  --body:"Metal Bat","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --util:"Murcielaco Type","Helvetica Neue",Arial,sans-serif;
+  --wrap:1240px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;background:var(--void)}
+body{margin:0;background:var(--void);color:var(--bone);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--mist)}
+h1,h2,h3{font-family:var(--display);font-weight:200;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,48px);line-height:1.08}
+p{margin:0}
+.lede{color:var(--mist);max-width:56ch}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:26px;height:auto}
+.brand span{font-family:var(--util);font-size:10px;letter-spacing:.42em}
+.brand em{font-style:normal;color:var(--mist)}
+.nav ul{display:flex;align-items:center;gap:28px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul li{display:flex;align-items:center}
+.brand span,.nav ul a{line-height:1;display:block;padding-top:.12em}
+.nav ul a{font-family:var(--util);font-size:10px;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;color:var(--mist)}
+.nav ul a:hover{color:var(--bone)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--util);font-weight:400;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 26px;border-radius:999px;border:1px solid var(--bone);background:var(--bone);color:var(--void);transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease;white-space:nowrap;cursor:pointer}
+.btn:hover{transform:translateY(-1px);background:var(--chrome);background-size:300% 100%;animation:flow 4s linear infinite;border-color:#cfd4da;color:var(--void)}
+.btn.ghost{background:transparent;color:var(--bone);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--signal);color:var(--signal);background:transparent}
+.btn.sm{padding:10px 18px;font-size:10px}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(48px,8vw,110px) clamp(40px,6vw,80px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto 35%;height:120%;background:radial-gradient(closest-side,rgba(220,220,220,.12),transparent 70%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center;position:relative}
+.hero h1{font-size:clamp(38px,6.2vw,84px);line-height:1;margin-block:22px 26px}
+.hero h1 b{font-weight:700;display:block}
+.hero .lede{font-size:17px}
+.claim{display:flex;align-items:center;gap:14px;margin-top:32px;padding:14px 18px;border:1px solid var(--line);border-radius:14px;max-width:440px;background:var(--hall)}
+.claim strong{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.claim span{font-size:13px;color:var(--mist);line-height:1.4}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-price{margin-top:18px;font-size:13px;color:var(--mist)}
+.hero-price b{color:var(--bone);font-weight:400}
+.stage{position:relative;aspect-ratio:1/0.86;max-width:100%}
+.stage img{position:absolute;filter:drop-shadow(0 40px 60px rgba(0,0,0,.8))}
+.stage .main{width:100%;left:0;top:6%;animation:float 7s ease-in-out infinite}
+.stage .sole{width:22%;right:-2%;top:-4%;opacity:.9;transform:rotate(14deg);animation:floatSole 6s ease-in-out infinite;animation-delay:-2.5s}
+@keyframes floatSole{0%,100%{transform:translateY(0) rotate(14deg)}50%{transform:translateY(-12px) rotate(11deg)}}
+.stage .tag{position:absolute;left:2%;bottom:0;font-family:var(--util);font-size:11px;letter-spacing:.2em;color:var(--mist);text-transform:uppercase}
+.stage .tag i{font-style:normal;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+
+/* featured */
+.featured{border-block:1px solid var(--line);padding-block:clamp(40px,6vw,72px)}
+.featured-title{text-align:center;margin-bottom:clamp(28px,4vw,48px);font-family:var(--display);font-weight:200;font-size:clamp(22px,2.6vw,30px);letter-spacing:0;color:var(--bone)}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px clamp(36px,7vw,96px)}
+.logos a{display:block;opacity:.85;transition:opacity .2s}
+.logos a:hover{opacity:1}
+.logos img{height:30px;width:auto}
+.logos a.forbes img{height:32px}
+.logos a.polly img{height:38px}
+.logos a.unreal img{height:34px}
+
+section.block{padding-block:clamp(64px,9vw,128px)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.head .eyebrow{grid-column:1/-1}
+
+/* deliverable */
+.deliver{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:stretch}
+.deliver figure{margin:0;border-radius:22px;overflow:hidden;position:relative;min-height:420px;background:var(--hall)}
+.deliver figure img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.deliver figure img.rot{opacity:0;transition:opacity 1.6s ease}
+.deliver figure img.rot.on{opacity:1}
+.deliver figure figcaption{position:absolute;left:18px;bottom:16px;font-family:var(--util);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--bone);background:rgba(0,0,0,.6);padding:7px 10px;border-radius:6px}
+.items{display:grid;border-top:1px solid var(--line);align-content:start}
+.item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;padding-block:22px;border-bottom:1px solid var(--line)}
+.item svg{width:22px;height:22px;stroke:var(--signal);fill:none;stroke-width:1.4;margin-top:3px}
+.item h3{font-family:var(--body);font-weight:400;font-size:17px;margin-bottom:4px}
+.item p{color:var(--mist);font-size:14.5px}
+
+/* animation separator */
+.liquid{background:var(--void);display:grid;place-items:center;overflow:hidden}
+.liquid video{width:min(100%,1400px);aspect-ratio:16/9;object-fit:cover;pointer-events:none}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.step{border-top:1px solid var(--bone);padding-top:18px;display:grid;gap:10px;align-content:start}
+.step .wk{font-family:var(--util);font-size:11px;letter-spacing:.18em;text-transform:uppercase;justify-self:start;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.step h3{font-family:var(--body);font-weight:400;font-size:16px}
+.step p{font-size:14px;color:var(--mist)}
+.timeline-note{margin-top:28px;font-size:13px;color:var(--mist)}
+
+/* klarna */
+.klarna-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.permonth{margin-top:28px;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,32px);background:var(--hall);display:grid;gap:16px}
+.kbadge{justify-self:start;display:inline-flex;align-items:center;background:#ffb3c7;color:#0b0b0b;font-family:var(--util);font-weight:900;font-size:15px;padding:7px 14px;border-radius:10px}
+.permonth .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.permonth .big strong{font-family:var(--display);font-weight:400;font-size:clamp(48px,7vw,80px);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.permonth .big span{font-family:var(--util);color:var(--mist);font-size:13px;letter-spacing:.1em}
+.permonth .r{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--mist);font-variant-numeric:tabular-nums;border-top:1px solid var(--line);padding-top:12px}
+.permonth .r b{color:var(--bone);font-weight:400}
+.permonth p{font-size:12px;color:var(--mist);line-height:1.5}
+.ksteps{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.ksteps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
+.ksteps .n{font-family:var(--util);font-size:12px;padding-top:3px;letter-spacing:.1em;align-self:start;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.ksteps h3{font-family:var(--body);font-weight:400;font-size:16px;margin-bottom:4px}
+.ksteps p{font-size:14px;color:var(--mist)}
+.ksteps b{color:var(--bone);font-weight:400}
+.note{margin-top:22px;padding:16px 18px;border-left:2px solid;border-image:var(--chrome) 1;background:var(--hall);border-radius:0 12px 12px 0;font-size:13.5px;color:var(--mist)}
+.note b{color:var(--bone);font-weight:400}
+
+/* pricing */
+.pricing{position:relative;overflow:hidden}
+.pricing::before{content:"";position:absolute;left:50%;top:45%;width:900px;height:900px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(225,230,236,.06),transparent 70%);pointer-events:none}
+.price-card{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,#111,var(--hall) 60%);overflow:hidden}
+.price-main{padding:clamp(28px,4vw,56px);display:grid;gap:22px;align-content:start}
+.promo{display:inline-flex;align-items:center;gap:10px;font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#e6e9ed;border:1px solid rgba(225,230,236,.35);border-radius:999px;padding:7px 14px;justify-self:start}
+.promo span{background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.promo i{width:6px;height:6px;border-radius:50%;background:var(--chrome);background-size:300% 100%;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+@keyframes flow{to{background-position:-300% 0}}
+.metal{background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.amount{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.amount s{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);color:var(--mist);text-decoration-thickness:2px;text-decoration-color:#cfd4da}
+.amount strong{font-family:var(--display);font-weight:400;font-size:clamp(54px,8vw,96px);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.amount small{font-family:var(--util);font-size:12px;color:var(--mist);letter-spacing:.1em}
+.save{font-size:14px;color:var(--mist)}
+.save b{color:var(--bone);font-weight:400}
+.why{font-size:14px;color:var(--mist);max-width:52ch}
+.slots{font-size:13px;color:var(--mist);border-top:1px solid var(--line);padding-top:14px}
+.slots a,.contact a,.faq a{color:var(--bone)}
+.incl{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.incl li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;font-size:14.5px}
+.incl li::before{content:"";width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--chrome);background-size:300% 100%}
+.pay-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.monthly{font-size:13px;color:var(--mist)}
+.monthly b{color:var(--bone);font-weight:400}
+.price-art{position:relative;background:radial-gradient(60% 55% at 50% 52%,#2a2a2a,transparent 75%);display:grid;place-items:center;padding:32px;min-height:320px}
+.price-art img{width:100%;filter:drop-shadow(0 40px 50px rgba(0,0,0,.8))}
+.ends{position:absolute;top:22px;right:24px;font-family:var(--util);font-size:10px;letter-spacing:.2em;color:var(--mist);text-transform:uppercase}
+
+/* faq */
+.faq{display:grid;border-top:1px solid var(--line);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;padding-block:22px;font-weight:300;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--util);color:#e6e9ed;font-size:20px;line-height:1;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--mist);font-size:15px;max-width:68ch}
+
+/* selected work */
+.work{border-top:1px solid var(--line)}
+.work .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end}
+.work .lede{margin-top:16px}
+.work-btn{display:flex;align-items:center;gap:18px;padding:14px 14px 14px 26px;border:1px solid var(--line);border-radius:999px;background:var(--hall);cursor:pointer;transition:border-color .2s}
+.work-btn:hover{border-color:var(--signal)}
+.work-btn span{font-family:var(--util);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.work-btn .thumbs{display:flex}
+.work-btn .thumbs img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--void);margin-left:-12px}
+.work-btn .thumbs img:first-child{margin-left:0}
+
+
+/* checkout consent */
+.consent{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:16px}
+.consent-card{width:min(100%,520px);border:1px solid var(--line);border-radius:24px;background:var(--hall);padding:clamp(22px,4vw,34px);display:grid;gap:18px}
+.consent-card h2{font-size:clamp(24px,3vw,30px)}
+.consent-card .sum{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-block:1px solid var(--line);padding-block:14px;font-size:14px;color:var(--mist)}
+.consent-card .sum b{font-family:var(--display);font-weight:400;font-size:24px;color:var(--bone)}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start;font-size:14.5px;color:#cfcfcf;cursor:pointer}
+.check input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:2px 0 0;border:1px solid #6a6a6a;border-radius:5px;background:transparent;cursor:pointer;display:grid;place-items:center}
+.check input:checked{background:var(--chrome);background-size:300% 100%;border-color:#cfd4da}
+.check input:checked::after{content:"";width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check a{color:var(--bone)}
+.consent-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.consent-actions .btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.consent-actions .cancel{background:none;border:0;color:var(--mist);font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;padding:12px}
+.consent-actions .cancel:hover{color:var(--bone)}
+.consent-note{font-size:12px;color:var(--mist)}
+/* gallery overlay */
+.gal{position:fixed;inset:0;z-index:50;background:var(--void);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:calc(env(safe-area-inset-top,0px) + 16px) clamp(16px,4vw,40px) calc(env(safe-area-inset-bottom,0px) + 20px)}
+.gal-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.gal-close{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:20px;line-height:1}
+.gal-close:hover{border-color:var(--signal);color:var(--signal)}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-block:16px;gap:0}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:16px;min-width:0;padding-inline:4px}
+.slide a.ig{display:block;min-height:0;height:100%}
+.slide img{width:100%;height:100%;object-fit:contain;min-height:0}
+.slide .cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 14px;text-align:center}
+.slide .cap b{font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px)}
+.slide .cap span{font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.gal-nav{display:flex;justify-content:center;align-items:center;gap:20px}
+.gal-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:var(--util);font-size:18px}
+.gal-nav button:hover{border-color:var(--signal);color:var(--signal)}
+.count{font-family:var(--util);font-size:12px;letter-spacing:.2em;color:var(--mist);min-width:70px;text-align:center;font-variant-numeric:tabular-nums}
+
+/* final */
+.final{position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.final .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:32px;align-items:center;padding-block:clamp(64px,9vw,120px)}
+.final h2{font-size:clamp(34px,5vw,64px)}
+.final img{width:100%;max-width:520px;justify-self:end;-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(70% 70% at 50% 50%,#000 60%,transparent 100%)}
+.final .hero-cta{margin-top:28px}
+.contact{margin-top:22px;font-size:13px;color:var(--mist)}
+.contact span{color:var(--bone);user-select:all}
+
+footer{border-top:1px solid var(--line);padding-block:32px 40px}
+footer .wrap{display:grid;gap:18px}
+footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.disclaimer{font-size:11.5px;line-height:1.6;color:var(--mist);max-width:110ch}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero .copy > *{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero .copy > *:nth-child(2){animation-delay:.08s}
+  .hero .copy > *:nth-child(3){animation-delay:.16s}
+  .hero .copy > *:nth-child(4){animation-delay:.24s}
+  .hero .copy > *:nth-child(5){animation-delay:.32s}
+  @keyframes rise{from{transform:translateY(16px)}}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.track{scroll-behavior:auto}}
+
+@media (max-width:980px){
+  .nav ul{display:none}
+  .nav .btn{margin-left:auto}
+  .hero .wrap,.deliver,.price-card,.klarna-grid,.final .wrap,.head,.work .wrap{grid-template-columns:minmax(0,1fr)}
+  .stage{order:-1;max-width:640px;margin-inline:auto;width:100%}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .final img{justify-self:center}
+  .work-btn{justify-self:start}
+}
+@media (max-width:520px){
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .brand span{letter-spacing:.24em}
+  .brand em{display:none}
+  .nav .btn{padding:9px 14px}
+  .btn{padding:15px 20px}
+  .hero-cta .btn{flex:1 1 100%}
+  .logos{gap:22px 30px}
+  .logos img{height:17px}
+  .logos a.forbes img{height:19px}
+  .logos a.polly img{height:22px}
+  .logos a.unreal img{height:21px}
+  .stage .sole{right:8%;top:-13%;width:19%}
+  .stage{margin-top:28px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="https://www.murcielaco.com" aria-label="MURCIELACO STUDIOS home">
+      <img src="assets/logo.png" alt="">
+      <span>MURCIELACO STUDIOS <em>/ SERVICES</em></span>
+    </a>
+    <ul>
+      <li><a href="#included">What you get</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#klarna">Pay monthly</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#work">Work</a></li>
+    </ul>
+    <a class="btn sm" href="#checkout" data-buy>Start now</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow">3D printed footwear · Designed for Zellerfeld</p>
+      <h1>Your own shoe brand. <b class="metal">Live in one month.</b></h1>
+      <p class="lede">We design your footwear, prepare it for Zellerfeld's review and hand you a model built to be 3D printed and sold worldwide. No factory, no minimum order, no inventory.</p>
+      <div class="claim"><strong>50+</strong><span>approved designs on Zellerfeld. The studio with the most approvals on the platform.</span></div>
+      <div>
+        <div class="hero-cta">
+          <a class="btn" href="#checkout" data-buy>Start my brand <span aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#process">See how it works</a>
+        </div>
+        <p class="hero-price">From <b>≈ $499/mo</b> with Klarna · October offer: <b>$5,990</b></p>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <img class="sole" src="assets/symbiosis-sole.webp" alt="">
+      <img class="main" src="assets/hero-vampyro-white.webp" alt="">
+      <p class="tag"><i>●</i> VAMPYRO / Symbiosis‑1</p>
+    </div>
+  </div>
+</section>
+
+<section class="featured" aria-label="Featured and supported by">
+  <div class="wrap">
+    <h2 class="featured-title">Featured and supported by</h2>
+    <div class="logos">
+      <a class="forbes" href="https://www.forbes.com/sites/alainhunkins/2025/05/21/redefining-leadership-for-the-future-of-work/?ctpv=searchpage" target="_blank" rel="noopener"><img src="assets/logo-forbes.svg" alt="Forbes"></a>
+      <a class="polly" href="https://www.pollypolymer.com/" target="_blank" rel="noopener"><img src="assets/logo-polly.svg" alt="Polly Polymer"></a>
+      <a href="https://clo3d.com/" target="_blank" rel="noopener"><img src="assets/logo-clo.svg" alt="CLO"></a>
+      <a href="https://www.zellerfeld.com/collections/vampyro" target="_blank" rel="noopener"><img src="assets/logo-zellerfeld.svg" alt="Zellerfeld"></a>
+      <a class="unreal" href="https://www.unrealengine.com/" target="_blank" rel="noopener"><img src="assets/logo-unreal.svg" alt="Unreal Engine"></a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="included">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What you get</p>
+      <h2>One deliverable that matters: a shoe that's approved and ready to sell.</h2>
+      <p class="lede">Some clients pick a design from our catalog and make it theirs. Others start from a blank page. Either way you receive the same result: a finished footwear design approved for manufacturing and commercialization through Zellerfeld.</p>
+    </div>
+    <div class="deliver">
+      <figure>
+        <img class="rot on" src="assets/r01.webp" alt="White 3D printed sneakers floating over liquid chrome">
+        <img class="rot" src="assets/r02.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r03.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r04.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r05.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r06.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r07.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r08.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r09.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r10.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r11.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r12.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r13.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r14.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r15.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r16.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r17.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r18.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r19.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <img class="rot" src="assets/r20.webp" alt="MURCIELACO STUDIOS footwear render" loading="lazy">
+        <figcaption>Concept · render</figcaption>
+      </figure>
+      <div class="items">
+        <div class="item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c4 0 5-6 9-6s5 6 9 6"/><path d="M3 21h18"/></svg>
+          <div><h3>Design from scratch or from our catalog</h3><p>We interpret your vision, references and brand identity, or adapt one of our existing models to your brand.</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+          <div><h3>Production‑ready 3D model</h3><p>Lattices, wall thickness, fit and sole geometry engineered for printing, not just for renders.</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <div><h3>Zellerfeld submission handled by us</h3><p>We prepare the files, submit the design and make the technical adjustments Zellerfeld requests during its review.</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg>
+          <div><h3>Your brand on the product</h3><p>Your logo and details sculpted into the shoe, so it launches as yours from the first pair.</p></div>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+          <div><h3>10 photorealistic renders</h3><p>Studio‑quality images of your finished shoe, ready to post on social media and use as launch and promotional content.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="liquid" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="metadata" poster="assets/symbiosis-liquid-poster.jpg">
+    <source src="assets/symbiosis-liquid.webm" type="video/webm">
+    <source src="assets/symbiosis-liquid.mp4" type="video/mp4">
+  </video>
+</div>
+
+<section class="block" id="process">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Process</p>
+      <h2>From idea to Zellerfeld submission in about four weeks.</h2>
+      <p class="lede">A clear sequence with one point of contact. You approve each stage before we move to the next.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="wk">Day 1</span><h3>Kickoff</h3><p>You secure your spot and send your idea, references or the catalog model you like.</p></div>
+      <div class="step"><span class="wk">Week 1</span><h3>Direction</h3><p>We define the silhouette, details and how your brand lives on the shoe.</p></div>
+      <div class="step"><span class="wk">Weeks 2–3</span><h3>3D development</h3><p>Full model built for printing, with renders for your feedback and revisions.</p></div>
+      <div class="step"><span class="wk">Weeks 3–4</span><h3>Zellerfeld review</h3><p>We submit the design and make the technical adjustments the platform requests.</p></div>
+      <div class="step"><span class="wk">Launch</span><h3>Sell it</h3><p>You get 10 photorealistic renders for your launch. Zellerfeld prints each pair on demand and ships it to your customers.</p></div>
+    </div>
+    <p class="timeline-note">Timelines are typical, not guaranteed. Review times depend on Zellerfeld and on how fast feedback rounds close.</p>
+  </div>
+</section>
+
+<section class="block" id="klarna" style="padding-top:0">
+  <div class="wrap klarna-grid">
+    <div>
+      <p class="eyebrow">Pay monthly</p>
+      <h2 style="margin-block:18px 20px">Start your brand for about $499 a month.</h2>
+      <p class="lede">Choose Klarna at checkout and split the cost into monthly payments. Klarna pays us upfront, so your project starts right away, and you pay Klarna over time.</p>
+      <div class="permonth">
+        <span class="kbadge">Klarna.</span>
+        <div class="big"><strong class="metal">≈ $499</strong><span>/ month · 12 months*</span></div>
+        <div class="r"><span>Total service price</span><b>$5,990</b></div>
+        <p>*Example only, before any interest. Klarna decides which plans you're offered (for example 6, 12 or 24 months), the interest rate and approval, based on your profile.</p>
+      </div>
+    </div>
+    <div>
+      <ol class="ksteps">
+        <li><span class="n">01</span><div><h3>Open the payment link</h3><p>Click "Start my brand". A secure Stripe checkout from MURCIELACO STUDIOS opens.</p></div></li>
+        <li><span class="n">02</span><div><h3>Enter your email and choose Klarna</h3><p>Under "Payment method", select <b>Klarna</b> instead of card, then click Pay.</p></div></li>
+        <li><span class="n">03</span><div><h3>Log in to Klarna</h3><p>You're redirected to Klarna. Sign in, or create an account with your phone number in a minute.</p></div></li>
+        <li><span class="n">04</span><div><h3>Pick your plan</h3><p>Klarna shows the monthly financing options you qualify for. Choose the number of months that suits you and review the terms.</p></div></li>
+        <li><span class="n">05</span><div><h3>Confirm</h3><p>Klarna usually decides in seconds. Once you confirm, you return to our page with your payment complete.</p></div></li>
+        <li><span class="n">06</span><div><h3>We kick off your project</h3><p>We receive your order in full and contact you by email to start the design. Your monthly payments go to Klarna.</p></div></li>
+      </ol>
+      <div class="note"><b>Where Klarna is available.</b> Klarna appears at checkout for eligible buyers in the United States, subject to Klarna's approval. Outside the US you can pay by card, Apple Pay or other wallets; many banks and wallets let you split a card purchase into installments on your side.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block pricing" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Pricing</p>
+      <h2>One price. Your brand, approved and ready.</h2>
+      <p class="lede">No hourly billing and no surprise extras. One fixed fee for the complete service.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-main">
+        <span class="promo"><i></i><span>October offer · 40% off for individuals</span></span>
+        <div>
+          <p class="eyebrow" style="margin-bottom:12px">Footwear Design &amp; Development</p>
+          <div class="amount">
+            <s>$9,990</s>
+            <strong class="metal">$5,990</strong>
+            <small>USD</small>
+          </div>
+        </div>
+        <p class="save">You save <b>$4,000</b>. Offer valid until October 31.</p>
+        <p class="why">Our standard rate for companies and brands stays at $9,990. This October we opened a 40% discount for individuals, so designers, creatives and footwear enthusiasts can get their own 3D printed shoes designed by our studio.</p>
+        <p class="slots">Limited monthly slots. Your payment reserves your slot and is non‑refundable. <a href="terms.html">Terms of Service</a></p>
+        <ul class="incl">
+          <li>Original design or a catalog model adapted to your brand</li>
+          <li>Production‑ready 3D model optimized for printing</li>
+          <li>Zellerfeld submission and review adjustments</li>
+          <li>Your logo and branding integrated into the shoe</li>
+          <li>10 photorealistic renders for social media and promotion</li>
+          <li>Up to two rounds of revisions</li>
+        </ul>
+        <div class="pay-row">
+          <a class="btn" href="#checkout" data-buy>Start my brand <span aria-hidden="true">→</span></a>
+          <p class="monthly">or <b>≈ $499/mo</b> with Klarna*</p>
+        </div>
+      </div>
+      <div class="price-art">
+        <span class="ends">Ends Oct 31</span>
+        <img src="assets/hero-vampyro-white.webp" alt="White VAMPYRO Symbiosis-1 shoe" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Questions</p>
+      <h2>Before you start</h2>
+    </div>
+    <div class="faq">
+      <details><summary>What is Zellerfeld?</summary><p>Zellerfeld is a platform that 3D prints footwear on demand. Once your design is approved, each pair is printed when a customer orders it, so you don't need a factory, molds, minimum orders or inventory.</p></details>
+      <details><summary>Can I use a model from your catalog?</summary><p>Yes. Many clients choose an existing MURCIELACO design and we adapt it to their brand. Others ask for something completely new. The price and the deliverable are the same: an approved, production‑ready design.</p></details>
+      <details><summary>What if I don't have a design or an idea yet?</summary><p>That's fine. We can start from zero: our creative direction helps you define the concept, references and style, and we build the design from there.</p></details>
+      <details><summary>What if I want more than one shoe?</summary><p>Write to us at contact@murcielaco.com before purchasing. For packages of two or more designs we offer a better price per model.</p></details>
+      <details><summary>How long does it take?</summary><p>Most projects reach Zellerfeld submission in about one month from kickoff. The exact time depends on feedback rounds, and final approval timing depends on Zellerfeld's review.</p></details>
+      <details><summary>Is the payment refundable?</summary><p>No. We take a limited number of projects each month, and your payment reserves one of those slots for you. You can move your slot to a later month once, with at least 7 days' notice. See the <a href="terms.html">Terms of Service</a> for details.</p></details>
+      <details><summary>Will I sign a contract?</summary><p>Yes. After purchase we send you a Project Agreement that records the specifics of your project, such as your chosen design, your brand assets and any particular requests.</p></details>
+      <details><summary>Do I need an existing brand?</summary><p>No. Bring a name and an idea, or just the idea. We help you shape how the brand shows up on the shoe.</p></details>
+      <details><summary>Can I pay in installments from outside the US?</summary><p>Klarna is currently offered at checkout to eligible US buyers. From other countries you can pay by card or digital wallet, and you can check with your bank or wallet whether it lets you split the purchase.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="block work" id="work">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h2 style="margin-top:18px">A studio that speaks every footwear language.</h2>
+      <p class="lede">Runners, boots, clogs, slides, mythology and supercars. Concepts and client projects from our studio.</p>
+      <p class="lede" style="margin-top:10px">Follow our latest work on <a href="https://www.instagram.com/murcielaco" target="_blank" rel="noopener" style="color:var(--bone)">Instagram @murcielaco</a>.</p>
+    </div>
+    <button class="work-btn" id="openGallery" type="button" aria-haspopup="dialog">
+      <span class="thumbs" aria-hidden="true">
+        <img src="assets/g-airflow-white.webp" alt="">
+        <img src="assets/g-manticore.webp" alt="">
+        <img src="assets/g-magma.webp" alt="">
+      </span>
+      <span>View selected work</span>
+    </button>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">October · 40% off</p>
+      <h2 style="margin-top:18px">Next month, your shoe could be on sale.</h2>
+      <div class="hero-cta">
+        <a class="btn" href="#checkout" data-buy>Start my brand <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="#klarna">Pay monthly</a>
+      </div>
+      <p class="contact">Questions first? Write to <span>contact@murcielaco.com</span></p>
+      <p class="contact">By purchasing you agree to our <a href="terms.html">Terms of Service</a>. Payment reserves a monthly slot and is non‑refundable.</p>
+    </div>
+    <img src="assets/final-symbiosis-dark.webp" alt="VAMPYRO Symbiosis-1 shoe in low light" loading="lazy">
+  </div>
+</section>
+</main>
+
+<div class="gal" id="gallery" role="dialog" aria-modal="true" aria-label="Selected work" hidden>
+  <div class="gal-top">
+    <p class="eyebrow">Selected work</p>
+    <button class="gal-close" id="closeGallery" type="button" aria-label="Close gallery">✕</button>
+  </div>
+  <div class="track" id="track" tabindex="0">
+    <figure class="slide"><img data-src="assets/scene-talarias.webp" alt="Blue winged Talarias sandals on a classical column"><figcaption class="cap"><b>Talarias</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-airflow-white.webp" alt="White Air Max TN Infinite concept"><figcaption class="cap"><b>Air Max TN Infinite (Concept)</b><span>Nike</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-airflow-black-pair.webp" alt="Black Air Max TN Infinite concept pair"><figcaption class="cap"><b>Air Max TN Infinite (Concept)</b><span>Nike</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-symbiosis-black.webp" alt="Black Symbiosis-1 shoe"><figcaption class="cap"><b>Symbiosis‑1</b><span>VAMPYRO</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-symbiosis-white.webp" alt="White Symbiosis-1 high shoe"><figcaption class="cap"><b>Symbiosis‑1 High</b><span>VAMPYRO</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-vampire-1.webp" alt="Black Vampire-1 boot"><figcaption class="cap"><b>Vampire‑1</b><span>VAMPYRO</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-flow-black.webp" alt="Black Quantum Glide concept"><figcaption class="cap"><b>Quantum Glide (Concept)</b><span>NOCTA</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-trail-black.webp" alt="Black XT-6000 concept clog"><figcaption class="cap"><b>XT‑6000 (Concept)</b><span>Salomon</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-marathon.webp" alt="Grey Marathon running shoes"><figcaption class="cap"><b>Marathon</b><span>SPECTRUM</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-wacken.webp" alt="Grey Wacken sneaker"><figcaption class="cap"><b>Wacken</b><span>Wacken Open Air</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-manticore.webp" alt="Purple Manticore high-top"><figcaption class="cap"><b>Manticore</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-magma.webp" alt="Red Magma shoes"><figcaption class="cap"><b>Magma</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-cerberus.webp" alt="Red Cerberus clogs"><figcaption class="cap"><b>Cerberus</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-cowboy.webp" alt="Cream sculpted cowboy boot render"><figcaption class="cap"><b>Cowboy</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-cowboy-printed-1.webp" alt="White printed cowboy boot worn on a stair"><figcaption class="cap"><b>Cowboy</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-cowboy-printed-2.webp" alt="Pair of white printed cowboy boots on stairs"><figcaption class="cap"><b>Cowboy</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-squirrels.webp" alt="Blue Squirrels sneaker"><figcaption class="cap"><b>Squirrels</b><span>Gamma Museum</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-yfntcs.webp" alt="Red Y-1 shoes"><figcaption class="cap"><b>Y‑1</b><span>YFNTCS</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/g-motf.webp" alt="Orange MOTF shoes"><figcaption class="cap"><b>MOTF</b><span>SandX</span></figcaption></figure>
+    <figure class="slide"><img data-src="assets/scene-sandx.webp" alt="Black SandX slides worn on a stone step"><figcaption class="cap"><b>SandX</b><span>SandX</span></figcaption></figure>
+  </div>
+  <div class="gal-nav">
+    <button type="button" id="prev" aria-label="Previous image">←</button>
+    <span class="count" id="count">1 / 20</span>
+    <button type="button" id="next" aria-label="Next image">→</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="https://www.murcielaco.com"><img src="assets/logo.png" alt=""><span>MURCIELACO STUDIOS</span></a>
+      <p class="eyebrow"><a href="terms.html" style="color:inherit">Terms of Service</a> · © 2026 MURCIELACO STUDIOS</p>
+    </div>
+    <p class="disclaimer">Some of the models shown were designed for clients and have already been 3D printed; others are conceptual studies created by MURCIELACO STUDIOS. Designs labeled "Concept" are independent design studies and are not affiliated with, sponsored or endorsed by the brands named; all third‑party names, logos and trademarks belong to their respective owners. Zellerfeld is an independent platform; approval of each design is decided by Zellerfeld. All purchases are subject to our <a href="terms.html" style="color:inherit">Terms of Service</a>. Klarna financing is offered by Klarna, subject to eligibility and approval.</p>
+  </div>
+</footer>
+
+<div class="consent" id="consent" role="dialog" aria-modal="true" aria-labelledby="consentTitle" hidden>
+  <div class="consent-card">
+    <p class="eyebrow">Before you continue</p>
+    <h2 id="consentTitle">Reserve your October slot</h2>
+    <div class="sum"><span>Footwear Design &amp; Development</span><b>$5,990</b></div>
+    <label class="check" for="agreeTerms">
+      <input type="checkbox" id="agreeTerms">
+      <span>I have read and agree to the <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>, and I understand that my payment reserves a limited monthly slot and is non‑refundable.</span>
+    </label>
+    <div class="consent-actions">
+      <a class="btn" id="goPay" href="https://pay.murcielaco.com/b/3cI4gz8ChfJA8hf4So33W0a" target="_blank" rel="noopener" aria-disabled="true" tabindex="-1">Continue to payment <span aria-hidden="true">→</span></a>
+      <button class="cancel" type="button" id="consentCancel">Cancel</button>
+    </div>
+    <p class="consent-note">You'll pay securely on Stripe. Choose Klarna there to pay monthly.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var gal=document.getElementById('gallery'), track=document.getElementById('track'),
+      count=document.getElementById('count'), opener=document.getElementById('openGallery');
+  var slides=[].slice.call(track.querySelectorAll('.slide'));
+  /* Instagram feed: paste the Behold.so feed URL here, e.g. 'https://feeds.behold.so/XXXXXXXX'.
+     While empty, the gallery shows the built-in images below. */
+  var IG_FEED='https://feeds.behold.so/TX6r3tWiq2mqtTjvNeAC';
+  function esc(t){var d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
+  function useFeed(posts){
+    posts=posts.filter(function(p){return p&&(p.mediaUrl||p.thumbnailUrl||p.sizes);}).slice(0,24);
+    if(!posts.length)return;
+    track.innerHTML=posts.map(function(p){
+      var img=(p.sizes&&p.sizes.large&&p.sizes.large.mediaUrl)||p.thumbnailUrl||p.mediaUrl;
+      var cap=(p.prunedCaption||p.caption||'').split('\n')[0].slice(0,90);
+      return '<figure class="slide"><a class="ig" href="'+esc(p.permalink)+'" target="_blank" rel="noopener"><img data-src="'+esc(img)+'" alt="'+esc(cap||'Instagram post by @murcielaco')+'"></a><figcaption class="cap"><b>'+(esc(cap)||'@murcielaco')+'</b><span>View on Instagram</span></figcaption></figure>';
+    }).join('');
+    slides=[].slice.call(track.querySelectorAll('.slide'));
+    var th=document.querySelectorAll('#openGallery .thumbs img');
+    [].forEach.call(th,function(t,i){var q=slides[i]&&slides[i].querySelector('img');if(q)t.src=q.dataset.src;});
+    document.querySelector('#gallery .eyebrow').textContent='@murcielaco on Instagram';
+  }
+  if(IG_FEED){fetch(IG_FEED).then(function(r){return r.json();}).then(function(d){useFeed(Array.isArray(d)?d:(d.posts||[]));}).catch(function(){});}
+  function load(){slides.forEach(function(s){var i=s.querySelector('img');if(i.dataset.src){i.src=i.dataset.src;i.removeAttribute('data-src');}});}
+  function idx(){return Math.round(track.scrollLeft/track.clientWidth);}
+  function update(){count.textContent=(idx()+1)+' / '+slides.length;}
+  function go(d){var n=Math.max(0,Math.min(slides.length-1,idx()+d));track.scrollTo({left:n*track.clientWidth,behavior:'smooth'});}
+  function open(){load();gal.hidden=false;document.body.style.overflow='hidden';track.scrollLeft=0;update();track.focus();}
+  function close(){gal.hidden=true;document.body.style.overflow='';opener.focus();}
+  opener.addEventListener('click',open);
+  document.getElementById('closeGallery').addEventListener('click',close);
+  document.getElementById('prev').addEventListener('click',function(){go(-1);});
+  document.getElementById('next').addEventListener('click',function(){go(1);});
+  track.addEventListener('scroll',function(){window.requestAnimationFrame(update);});
+  document.addEventListener('keydown',function(e){if(gal.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight'){e.preventDefault();go(1);}if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}});
+})();
+
+(function(){
+  var dlg=document.getElementById('consent'),box=document.getElementById('agreeTerms'),go=document.getElementById('goPay'),last=null;
+  function sync(){var ok=box.checked;go.setAttribute('aria-disabled',ok?'false':'true');go.tabIndex=ok?0:-1;}
+  function open(e){e.preventDefault();last=e.currentTarget;box.checked=false;sync();dlg.hidden=false;document.body.style.overflow='hidden';box.focus();}
+  function close(){dlg.hidden=true;document.body.style.overflow='';if(last)last.focus();}
+  [].forEach.call(document.querySelectorAll('[data-buy]'),function(a){a.addEventListener('click',open);});
+  box.addEventListener('change',sync);
+  go.addEventListener('click',function(e){if(!box.checked){e.preventDefault();return;}setTimeout(close,300);});
+  document.getElementById('consentCancel').addEventListener('click',close);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)close();});
+  document.addEventListener('keydown',function(e){if(!dlg.hidden&&e.key==='Escape')close();});
+})();
+
+(function(){
+  var ims=[].slice.call(document.querySelectorAll('.deliver figure img.rot')),i=0;
+  if(ims.length<2||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  setInterval(function(){ims[i].classList.remove('on');i=(i+1)%ims.length;ims[i].loading='eager';ims[i].classList.add('on');ims[(i+1)%ims.length].loading='eager';},10000);
+})();
+</script>
+</body>
+</html>
