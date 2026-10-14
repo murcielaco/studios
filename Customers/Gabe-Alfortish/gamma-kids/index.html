@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAMMA KIDS | Wearable Art for Little Feet</title>
+  <meta name="description" content="GAMMA KIDS — the playroom of GAMMA MUSEUM. 3D printed wearable art for kids. Coming soon.">
+  <meta name="theme-color" content="#ff5fa8">
+  <link rel="icon" type="image/svg+xml" href="assets/svg/favicon.svg">
+  <meta property="og:title" content="GAMMA KIDS — Coming Soon">
+  <meta property="og:description" content="The playroom of GAMMA MUSEUM. 3D printed wearable art for little feet.">
+  <meta property="og:image" content="https://kids.gammamuseum.studio/assets/img/og.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preload" href="assets/fonts/fredoka-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- COMING SOON ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>COMING SOON</span><i>★</i><span>GAMMA KIDS</span><i>●</i><span>COMING SOON</span><i>★</i><span>3D PRINTED FOR LITTLE FEET</span><i>●</i>
+      <span>COMING SOON</span><i>★</i><span>GAMMA KIDS</span><i>●</i><span>COMING SOON</span><i>★</i><span>3D PRINTED FOR LITTLE FEET</span><i>●</i>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="nav__brand" href="#top" aria-label="GAMMA KIDS home">
+      <img src="assets/svg/gamma.svg" alt="GAMMA" class="nav__gamma">
+      <span class="nav__kids">KIDS</span>
+    </a>
+    <nav class="nav__links" aria-label="Models">
+      <a href="#lambo">Lambo</a>
+      <a href="#magma">Magma</a>
+      <a href="#squirrels">Squirrels</a>
+    </nav>
+    <a class="btn-museum" href="https://www.gammamuseum.studio/">
+      <span class="btn-museum__arrow" aria-hidden="true">←</span>
+      <span class="btn-museum__m" aria-hidden="true"></span>
+      <span class="btn-museum__label">Back to the Museum</span>
+    </a>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow">A new wing of GAMMA MUSEUM</p>
+        <h1 class="hero__title" aria-label="Gamma Kids">
+          <span class="ht ht--1">G</span><span class="ht ht--2">A</span><span class="ht ht--3">M</span><span class="ht ht--4">M</span><span class="ht ht--5">A</span>
+          <span class="hero__title-kids"><em>Kids</em></span>
+        </h1>
+        <p class="hero__sub">The museum's playroom. Wearable art, 3D printed for little feet.</p>
+      </div>
+
+      <a class="sticker" href="#lambo" aria-label="Coming soon">
+        <svg viewBox="0 0 200 200" class="sticker__ring" aria-hidden="true">
+          <defs><path id="circ" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+          <text><textPath href="#circ" textLength="462" lengthAdjust="spacing">COMING SOON ★ COMING SOON ★ COMING SOON ★</textPath></text>
+        </svg>
+        <span class="sticker__core">SOON</span>
+      </a>
+
+      <!-- Playroom scene -->
+      <div class="scene">
+        <!-- Floating / falling toys -->
+        <div class="toys" aria-hidden="true">
+          <svg class="toy toy--ball fall" viewBox="0 0 100 100"><use href="#i-ball"/></svg>
+          <svg class="toy toy--star float" viewBox="0 0 100 100"><use href="#i-star"/></svg>
+          <svg class="toy toy--star2 float" viewBox="0 0 100 100"><use href="#i-star"/></svg>
+          <svg class="toy toy--top float" viewBox="0 0 100 120"><use href="#i-top"/></svg>
+          <svg class="toy toy--rings fall" viewBox="0 0 100 130"><use href="#i-rings"/></svg>
+          <svg class="toy toy--crayon float" viewBox="0 0 160 40"><use href="#i-crayon"/></svg>
+          <svg class="toy toy--rocket float" viewBox="0 0 80 140"><use href="#i-rocket"/></svg>
+          <svg class="toy toy--cloud float" viewBox="0 0 160 90"><use href="#i-cloud"/></svg>
+          <svg class="toy toy--ball2 fall" viewBox="0 0 100 100"><use href="#i-ball2"/></svg>
+
+          <div class="mini mini--1 fall"><div class="cube" style="--c:#ffd23f"><b class="f">G</b><b class="r"></b><b class="t"></b></div></div>
+          <div class="mini mini--2 float"><div class="cube" style="--c:#6ec6ff"><b class="f">7</b><b class="r"></b><b class="t"></b></div></div>
+          <div class="mini mini--3 fall"><div class="cube" style="--c:#7be0ad"><b class="f">K</b><b class="r"></b><b class="t"></b></div></div>
+          <div class="mini mini--4 float"><div class="cube" style="--c:#b79cff"><b class="f">3</b><b class="r"></b><b class="t"></b></div></div>
+        </div>
+
+        <!-- Pedestal blocks with the 3 shoes -->
+        <div class="pedestals">
+          <a class="pedestal pedestal--lambo" href="#lambo" aria-label="See Lambo">
+            <img class="pedestal__shoe" src="assets/img/hero/lambo.webp" alt="GAMMA KIDS Lambo shoe" width="1400" height="436">
+            <div class="cube cube--big" style="--c:#ffd23f"><b class="f">A</b><b class="r">1</b><b class="t"></b></div>
+            <span class="pedestal__tag">Lambo</span>
+          </a>
+          <a class="pedestal pedestal--magma" href="#magma" aria-label="See Magma">
+            <img class="pedestal__shoe" src="assets/img/hero/magma.webp" alt="GAMMA KIDS Magma shoe" width="1400" height="657">
+            <div class="cube cube--big" style="--c:#b79cff"><b class="f">B</b><b class="r">2</b><b class="t"></b></div>
+            <span class="pedestal__tag">Magma</span>
+          </a>
+          <a class="pedestal pedestal--squirrels" href="#squirrels" aria-label="See Squirrels">
+            <img class="pedestal__shoe" src="assets/img/hero/squirrels.webp" alt="GAMMA KIDS Squirrels shoe" width="1400" height="596">
+            <div class="cube cube--big" style="--c:#ff8a3d"><b class="f">C</b><b class="r">3</b><b class="t"></b></div>
+            <span class="pedestal__tag">Squirrels</span>
+          </a>
+        </div>
+        <div class="floor" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p class="intro__text">
+        GAMMA KIDS is the playroom of <a href="https://www.gammamuseum.studio/">GAMMA MUSEUM</a>. The same idea —
+        wearable art made through digital fabrication and 3D printing — now sculpted for the ones who
+        <span class="hl">run, jump and climb</span> everything. Supercars, lava and squirrels:
+        three pieces of art, made to be played in.
+      </p>
+      <div class="intro__chips">
+        <span class="chip">3D printed</span>
+        <span class="chip">Made for kids</span>
+        <span class="chip chip--hot">Coming soon</span>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="product product--lambo" id="lambo" data-product>
+      <div class="product__info">
+        <p class="product__no"><span class="badge-block" style="--c:#ffd23f">A</span> Piece Nº 01</p>
+        <h2 class="product__name">Lambo</h2>
+        <p class="product__tagline">A supercar for little feet.</p>
+        <p class="product__desc">
+          Sculpted wheel arches, aerodynamic side vents and a mesh windshield on top:
+          LAMBO turns a pair of shoes into a pair of race cars. Built in one piece through
+          3D printing, with a low, wide stance made for speeding down the hallway.
+        </p>
+        <div class="product__cta">
+          <span class="btn-soon">Coming soon</span>
+          <a class="btn-ghost" href="https://instagram.com/gammamuseum" target="_blank" rel="noopener">Follow the launch</a>
+        </div>
+      </div>
+      <div class="gallery" data-gallery>
+        <button class="gallery__main" type="button" aria-label="Open Lambo gallery">
+          <img src="assets/img/lambo/lambo-01.jpg" alt="Lambo in yellow, pair" loading="lazy">
+        </button>
+        <div class="gallery__thumbs">
+          <button type="button" class="is-active" data-full="assets/img/lambo/lambo-01.jpg"><img src="assets/img/lambo/lambo-01-sm.jpg" alt="Lambo in yellow, pair" loading="lazy"></button>
+          <button type="button" data-full="assets/img/lambo/lambo-04.jpg"><img src="assets/img/lambo/lambo-04-sm.jpg" alt="Lambo worn by a kid" loading="lazy"></button>
+          <button type="button" data-full="assets/img/lambo/lambo-03.jpg"><img src="assets/img/lambo/lambo-03-sm.jpg" alt="Lambo in pink" loading="lazy"></button>
+          <button type="button" data-full="assets/img/lambo/lambo-02.jpg"><img src="assets/img/lambo/lambo-02-sm.jpg" alt="Lambo in orange" loading="lazy"></button>
+          <button type="button" data-full="assets/img/lambo/lambo-05.jpg"><img src="assets/img/lambo/lambo-05-sm.jpg" alt="Lambo in blue" loading="lazy"></button>
+          <button type="button" data-full="assets/img/lambo/lambo-06.jpg"><img src="assets/img/lambo/lambo-06-sm.jpg" alt="Lambo in cream" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product product--magma product--flip" id="magma" data-product>
+      <div class="product__info">
+        <p class="product__no"><span class="badge-block" style="--c:#b79cff">B</span> Piece Nº 02</p>
+        <h2 class="product__name">Magma</h2>
+        <p class="product__tagline">Lava, frozen mid-flow.</p>
+        <p class="product__desc">
+          Layer after layer of rippling lines wrap the whole shoe, like lava cooling into
+          stone. MAGMA is soft in shape and bold in color — a slip-on sculpture that
+          goes from the playground to the dinner table without asking permission.
+        </p>
+        <div class="product__cta">
+          <span class="btn-soon">Coming soon</span>
+          <a class="btn-ghost" href="https://instagram.com/gammamuseum" target="_blank" rel="noopener">Follow the launch</a>
+        </div>
+      </div>
+      <div class="gallery" data-gallery>
+        <button class="gallery__main" type="button" aria-label="Open Magma gallery">
+          <img src="assets/img/magma/magma-01.jpg" alt="Magma in coral, pair" loading="lazy">
+        </button>
+        <div class="gallery__thumbs">
+          <button type="button" class="is-active" data-full="assets/img/magma/magma-01.jpg"><img src="assets/img/magma/magma-01-sm.jpg" alt="Magma in coral, pair" loading="lazy"></button>
+          <button type="button" data-full="assets/img/magma/magma-02.jpg"><img src="assets/img/magma/magma-02-sm.jpg" alt="Magma worn by a kid" loading="lazy"></button>
+          <button type="button" data-full="assets/img/magma/magma-03.jpg"><img src="assets/img/magma/magma-03-sm.jpg" alt="Magma in lime" loading="lazy"></button>
+          <button type="button" data-full="assets/img/magma/magma-04.jpg"><img src="assets/img/magma/magma-04-sm.jpg" alt="Magma worn, sitting" loading="lazy"></button>
+          <button type="button" data-full="assets/img/magma/magma-05.jpg"><img src="assets/img/magma/magma-05-sm.jpg" alt="Magma in lilac, pair" loading="lazy"></button>
+          <button type="button" data-full="assets/img/magma/magma-06.jpg"><img src="assets/img/magma/magma-06-sm.jpg" alt="Magma in lime, pair" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product product--squirrels" id="squirrels" data-product>
+      <div class="product__info">
+        <p class="product__no"><span class="badge-block" style="--c:#ff8a3d">C</span> Piece Nº 03</p>
+        <h2 class="product__name">Squirrels</h2>
+        <p class="product__tagline">A little friend on every step.</p>
+        <p class="product__desc">
+          A squirrel curls over the toe, its tail sweeping back along the side, and a
+          chunky sole keeps every adventure grounded. SQUIRRELS is pure storytelling in
+          3D print — the kind of shoe kids name, talk to, and never want to take off.
+        </p>
+        <div class="product__cta">
+          <span class="btn-soon">Coming soon</span>
+          <a class="btn-ghost" href="https://instagram.com/gammamuseum" target="_blank" rel="noopener">Follow the launch</a>
+        </div>
+      </div>
+      <div class="gallery" data-gallery>
+        <button class="gallery__main" type="button" aria-label="Open Squirrels gallery">
+          <img src="assets/img/squirrels/squirrels-01.jpg" alt="Squirrels in pink, pair" loading="lazy">
+        </button>
+        <div class="gallery__thumbs">
+          <button type="button" class="is-active" data-full="assets/img/squirrels/squirrels-01.jpg"><img src="assets/img/squirrels/squirrels-01-sm.jpg" alt="Squirrels in pink, pair" loading="lazy"></button>
+          <button type="button" data-full="assets/img/squirrels/squirrels-02.jpg"><img src="assets/img/squirrels/squirrels-02-sm.jpg" alt="Squirrels worn by a kid" loading="lazy"></button>
+          <button type="button" data-full="assets/img/squirrels/squirrels-03.jpg"><img src="assets/img/squirrels/squirrels-03-sm.jpg" alt="Squirrels in white, worn" loading="lazy"></button>
+          <button type="button" data-full="assets/img/squirrels/squirrels-04.jpg"><img src="assets/img/squirrels/squirrels-04-sm.jpg" alt="Squirrels in yellow, pair" loading="lazy"></button>
+          <button type="button" data-full="assets/img/squirrels/squirrels-05.jpg"><img src="assets/img/squirrels/squirrels-05-sm.jpg" alt="Squirrels in blue" loading="lazy"></button>
+          <button type="button" data-full="assets/img/squirrels/squirrels-06.jpg"><img src="assets/img/squirrels/squirrels-06-sm.jpg" alt="Squirrels in white with sole" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SOON band -->
+    <section class="soon">
+      <div class="soon__marquee" aria-hidden="true">
+        <div class="soon__track">
+          <span>COMING SOON</span><span class="o">COMING SOON</span><span>COMING SOON</span><span class="o">COMING SOON</span>
+          <span>COMING SOON</span><span class="o">COMING SOON</span><span>COMING SOON</span><span class="o">COMING SOON</span>
+        </div>
+      </div>
+      <div class="soon__body">
+        <h2 class="soon__title">The playroom opens soon.</h2>
+        <p class="soon__text">Be the first to know when LAMBO, MAGMA and SQUIRRELS are ready to walk out of the museum.</p>
+        <div class="soon__actions">
+          <a class="btn-pop" href="https://instagram.com/gammamuseum" target="_blank" rel="noopener">Follow on Instagram</a>
+          <a class="btn-pop btn-pop--alt" href="https://www.gammamuseum.studio/">← Visit GAMMA MUSEUM</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <h2 class="footer__title">Follow us and<br>stay up to date</h2>
+      <div class="footer__social">
+        <a href="https://instagram.com/gammamuseum" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a href="https://tiktok.com/@gamma_museum" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.3 2.3 1.9 3.9 4.1 4.1v3.1c-1.5 0-2.9-.4-4.1-1.2v6.2c0 3.4-2.7 5.8-5.9 5.8S5 18.6 5 15.3c0-3.4 2.9-6 6.4-5.6v3.2c-1.6-.4-3.2.7-3.2 2.4 0 1.4 1.1 2.5 2.5 2.5s2.6-1 2.6-2.7V3h3.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 GAMMA MUSEUM. Designed by <a href="https://murcielaco.com/" target="_blank" rel="noopener">MURCIELACO</a>.</p>
+      <a class="footer__m" href="https://www.gammamuseum.studio/" aria-label="GAMMA MUSEUM"></a>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" hidden>
+    <button class="lightbox__close" type="button" aria-label="Close">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous">‹</button>
+    <img class="lightbox__img" alt="">
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next">›</button>
+  </div>
+
+  <!-- Toy sprites (original drawings) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-ball" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="#fff"/>
+        <path d="M50 4a46 46 0 0 1 40 23L50 50z" fill="#ff5fa8"/>
+        <path d="M90 27a46 46 0 0 1 0 46L50 50z" fill="#ffd23f"/>
+        <path d="M90 73a46 46 0 0 1-40 23L50 50z" fill="#6ec6ff"/>
+        <path d="M50 96a46 46 0 0 1-40-23L50 50z" fill="#7be0ad"/>
+        <path d="M10 73a46 46 0 0 1 0-46L50 50z" fill="#b79cff"/>
+        <circle cx="50" cy="50" r="7" fill="#fff"/>
+        <ellipse cx="34" cy="26" rx="12" ry="6" fill="#fff" opacity=".45" transform="rotate(-30 34 26)"/>
+      </symbol>
+      <symbol id="i-ball2" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="#6ec6ff"/>
+        <path d="M8 40c25 10 59 10 84 0M8 62c25-10 59-10 84 0" stroke="#fff" stroke-width="6" fill="none"/>
+        <ellipse cx="34" cy="24" rx="12" ry="6" fill="#fff" opacity=".45" transform="rotate(-30 34 24)"/>
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 100 100">
+        <path d="M50 6l12.6 27.4 29.9 3.4-22.3 20.3 6.2 29.5L50 71.5 23.6 86.6l6.2-29.5L7.5 36.8l29.9-3.4z" fill="#ffd23f" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-top" viewBox="0 0 100 120">
+        <rect x="45" y="2" width="10" height="22" rx="4" fill="#3a0b2e"/>
+        <path d="M8 40c0-12 19-18 42-18s42 6 42 18L50 116z" fill="#ff5fa8"/>
+        <path d="M8 40c0 9 19 15 42 15s42-6 42-15" fill="#ffd23f"/>
+        <path d="M22 66l56 0" stroke="#fff" stroke-width="7"/>
+      </symbol>
+      <symbol id="i-rings" viewBox="0 0 100 130">
+        <rect x="46" y="4" width="8" height="110" rx="4" fill="#ffd23f"/>
+        <ellipse cx="50" cy="112" rx="42" ry="13" fill="#ff5fa8"/>
+        <ellipse cx="50" cy="90" rx="34" ry="12" fill="#ff8a3d"/>
+        <ellipse cx="50" cy="69" rx="27" ry="11" fill="#7be0ad"/>
+        <ellipse cx="50" cy="50" rx="20" ry="10" fill="#6ec6ff"/>
+        <circle cx="50" cy="30" r="12" fill="#b79cff"/>
+      </symbol>
+      <symbol id="i-crayon" viewBox="0 0 160 40">
+        <path d="M20 6h110l26 14-26 14H20z" fill="#7be0ad"/>
+        <path d="M130 6l26 14-26 14z" fill="#3a0b2e" opacity=".2"/>
+        <rect x="4" y="6" width="22" height="28" rx="5" fill="#3a9e74"/>
+        <path d="M44 6v28M100 6v28" stroke="#fff" stroke-width="5"/>
+      </symbol>
+      <symbol id="i-rocket" viewBox="0 0 80 140">
+        <path d="M40 4c22 18 26 52 20 86H20C14 56 18 22 40 4z" fill="#fff"/>
+        <circle cx="40" cy="50" r="11" fill="#6ec6ff" stroke="#ff5fa8" stroke-width="5"/>
+        <path d="M20 70L4 100l18-4zM60 70l16 30-18-4z" fill="#ff5fa8"/>
+        <path d="M28 92h24l-12 30z" fill="#ffd23f"/>
+        <path d="M33 92h14l-7 18z" fill="#ff8a3d"/>
+      </symbol>
+      <symbol id="i-cloud" viewBox="0 0 160 90">
+        <path d="M40 84a30 30 0 0 1-4-60 34 34 0 0 1 64-10 26 26 0 0 1 40 22 24 24 0 0 1-4 48z" fill="#fff"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
