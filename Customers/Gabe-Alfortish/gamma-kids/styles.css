@@ -83,8 +83,8 @@ button { font: inherit; color: inherit; }
   background: var(--pink-500); color: #fff; padding: 4px 10px 3px; border-radius: 999px;
   transform: rotate(-4deg);
 }
-.nav__links { display: flex; gap: 28px; font-family: var(--f-display); font-weight: 600; font-size: 16px; }
-.nav__links a { text-decoration: none; position: relative; }
+.nav__links { display: flex; align-items: center; gap: 28px; font-family: var(--f-display); font-weight: 600; font-size: 16px; }
+.nav__links a { text-decoration: none; position: relative; line-height: 1.2; }
 .nav__links a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 3px; border-radius: 3px;
   background: var(--pink-500); transform: scaleX(0); transition: transform .25s ease;
@@ -121,6 +121,29 @@ button { font: inherit; color: inherit; }
   font-size: clamp(16px, 1.6vw, 20px); color: var(--berry-2);
 }
 .hero__copy { position: relative; z-index: 5; max-width: 900px; }
+.music-btn {
+  display: inline-flex; align-items: center; gap: 10px; margin: 0 0 16px; padding: 0;
+  border: 0; background: none; cursor: pointer; color: var(--berry);
+  font-family: var(--f-display); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+}
+.music-btn__icon {
+  display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--pink-500); color: #fff; box-shadow: 0 3px 0 var(--berry);
+  transition: transform .15s, box-shadow .15s;
+}
+.music-btn__icon svg { width: 18px; height: 18px; grid-area: 1 / 1; }
+.music-btn .i-pause, .music-btn.is-playing .i-play { display: none; }
+.music-btn.is-playing .i-pause { display: block; }
+.music-btn:hover .music-btn__icon { transform: translateY(2px); box-shadow: 0 1px 0 var(--berry); }
+.music-btn:focus-visible { outline: none; }
+.music-btn:focus-visible .music-btn__icon { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.music-btn__eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music-btn__eq i { width: 3px; height: 4px; border-radius: 2px; background: var(--pink-500); }
+.music-btn.is-playing .music-btn__eq i { animation: eq .9s ease-in-out infinite; }
+.music-btn.is-playing .music-btn__eq i:nth-child(2) { animation-delay: -.3s; }
+.music-btn.is-playing .music-btn__eq i:nth-child(3) { animation-delay: -.6s; }
+.music-btn.is-playing .music-btn__eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 16px; } }
 .hero__title {
   margin: 0; line-height: .86; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .04em;
   font-family: var(--f-display); font-weight: 700;
@@ -495,7 +518,7 @@ button { font: inherit; color: inherit; }
 }
 .game__pads button:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--berry); }
 @media (pointer: coarse), (max-width: 600px) { .game__pads { display: grid; } }
-.nav__play { background: var(--yellow); padding: 4px 12px; border-radius: 999px; }
+.nav__play { display: inline-flex; align-items: center; background: var(--yellow); padding: 6px 14px 5px; border-radius: 999px; line-height: 1; }
 .nav__play::after { display: none; }
 @media (max-width: 900px) {
   .arcade { grid-template-columns: 1fr; gap: 0; }

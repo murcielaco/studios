@@ -220,11 +220,13 @@
     state = 'playing';
     overlay.hidden = true;
     root.classList.add('is-playing');
+    window.dispatchEvent(new Event('gk:game-start'));
     sfx.start(); startMusic();
     canvas.focus({ preventScroll: true });
   }
   function gameOver() {
     state = 'over';
+    window.dispatchEvent(new Event('gk:game-end'));
     shake = 14; flash = 1;
     stopMusic(); sfx.lose();
     root.classList.remove('is-playing');
@@ -586,6 +588,7 @@
   function pauseGame() {
     if (state === 'playing') {
       state = 'paused-ready';
+      window.dispatchEvent(new Event('gk:game-end'));
       stopMusic();
       ovTitle.textContent = 'Paused';
       ovText.innerHTML = `<strong>${Math.floor(score).toLocaleString('en-US')}</strong> points so far`;
@@ -596,6 +599,7 @@
   }
   function resume() {
     state = 'playing'; overlay.hidden = true; root.classList.add('is-playing');
+    window.dispatchEvent(new Event('gk:game-start'));
     ensureAudio(); startMusic(); last = performance.now();
   }
 

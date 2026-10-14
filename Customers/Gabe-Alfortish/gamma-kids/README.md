@@ -12,6 +12,7 @@ gamma-kids/
 ├── index.html          # page
 ├── styles.css          # all styles (palette and fonts at the top)
 ├── main.js             # gallery, lightbox, scroll reveal, toy drop-in
+├── music.js            # background music (original music-box loop, WebAudio) for the hero play button
 ├── game.js             # LAMBO RUSH mini game (canvas + WebAudio, no dependencies)
 ├── netlify.toml        # hosting config (Netlify), optional
 └── assets/
