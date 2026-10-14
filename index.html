@@ -232,6 +232,8 @@ section.block{padding-block:clamp(64px,9vw,128px)}
 .slide .cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 14px;text-align:center}
 .slide .cap b{font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px)}
 .slide .cap span{font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
+.slide.ig-embed{grid-template-rows:minmax(0,1fr);place-items:center}
+.ig-embed iframe{display:block;height:100%;max-height:820px;aspect-ratio:400/690;width:auto;max-width:100%;border:0;border-radius:14px;background:#fff;color-scheme:light}
 .gal-nav{display:flex;justify-content:center;align-items:center;gap:20px}
 .gal-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:var(--util);font-size:18px}
 .gal-nav button:hover{border-color:var(--signal);color:var(--signal)}
@@ -580,7 +582,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
   </div>
   <div class="gal-nav">
     <button type="button" id="prev" aria-label="Previous image">←</button>
-    <span class="count" id="count">1 / 20</span>
+    <span class="count" id="count">1 / 25</span>
     <button type="button" id="next" aria-label="Next image">→</button>
   </div>
 </div>
@@ -617,42 +619,15 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
   var gal=document.getElementById('gallery'), track=document.getElementById('track'),
       count=document.getElementById('count'), opener=document.getElementById('openGallery');
   var slides=[].slice.call(track.querySelectorAll('.slide'));
-  /* Instagram feed: paste the Behold.so feed URL here, e.g. 'https://feeds.behold.so/XXXXXXXX'.
-     While empty, the gallery shows the built-in images below. */
-  var IG_FEED='https://feeds.behold.so/TX6r3tWiq2mqtTjvNeAC';
-  function esc(t){var d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
-  function pic(m){return (m.sizes&&m.sizes.large&&m.sizes.large.mediaUrl)||m.thumbnailUrl||m.mediaUrl;}
-  function item(m,first){
-    var cls='igm'+(first?' on':'');
-    if(m.mediaType==='VIDEO'&&m.mediaUrl){
-      return '<video class="'+cls+'" muted loop playsinline preload="none" data-src="'+esc(m.mediaUrl)+'" data-poster="'+esc(m.thumbnailUrl||pic(m))+'"></video>';
-    }
-    return '<img class="'+cls+'" data-src="'+esc(pic(m))+'" alt="">';
-  }
-  function useFeed(posts){
-    posts=posts.filter(function(p){return p&&(p.mediaUrl||p.thumbnailUrl||p.sizes||(p.children&&p.children.length));}).slice(0,24);
-    if(!posts.length)return;
-    track.innerHTML=posts.map(function(p){
-      var cap=(p.prunedCaption||p.caption||'').split('\n')[0].slice(0,90);
-      var kids=(p.mediaType==='CAROUSEL_ALBUM'&&p.children&&p.children.length)?p.children:[p];
-      var media=kids.map(function(m,i){return item(m,i===0);}).join('');
-      var ctr=kids.length>1?'<button type="button" class="igp" aria-label="Previous photo">‹</button><button type="button" class="ign" aria-label="Next photo">›</button><div class="igd">'+kids.map(function(_,i){return '<i'+(i?'':' class="on"')+'></i>';}).join('')+'</div>':'';
-      return '<figure class="slide ig-post"><div class="igbox">'+media+ctr+'</div><figcaption class="cap"><b>'+(esc(cap)||'@murcielaco')+'</b><a href="'+esc(p.permalink)+'" target="_blank" rel="noopener">View on Instagram</a></figcaption></figure>';
+  /* Latest 25 posts from instagram.com/murcielaco (grid order, incl. collabs). Official Instagram embeds. */
+  var IG_POSTS=["p/DPUTx77AQms","reel/DHYwg3Zu5FL","p/DdWc3Pkkfd-","p/DbCPbv6jndx","reel/DbCLwjBOyzp","p/DZHDxR9jkQN","p/DYkAlNSDg88","p/DYhdeR6DjDM","reel/DU6_JayDhDV","p/DU8VieSjiGE","reel/DVT4_9jDksA","p/DU0oTE7DtAM","p/DU5VJ6NDhoR","reel/DPUKiRlDUdC","reel/DSdN_2yEkxX","p/DQZcGl-jYhV","reel/DQZd_qFjWXs","reel/DRFFaKtDWLA","p/DHGu8xmib4q","reel/DLaOl4-s_Na","reel/DLYei-mPuGw","p/DITqQhAu8x5","reel/CwIdH3yBbMn","reel/DLSOg9IRQJS","p/DLfl7fcxr4Y"];
+  if(IG_POSTS.length){
+    track.innerHTML=IG_POSTS.map(function(p,i){
+      return '<figure class="slide ig-embed"><iframe data-src="https://www.instagram.com/'+p+'/embed/" title="Instagram post '+(i+1)+' by @murcielaco" loading="lazy" allowtransparency="true" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write"></iframe></figure>';
     }).join('');
     slides=[].slice.call(track.querySelectorAll('.slide'));
-    slides.forEach(function(sl){
-      var ms=[].slice.call(sl.querySelectorAll('.igm')),dots=[].slice.call(sl.querySelectorAll('.igd i')),k=0;
-      function show(n){ms[k].classList.remove('on');if(dots[k])dots[k].classList.remove('on');k=(n+ms.length)%ms.length;ms[k].classList.add('on');if(dots[k])dots[k].classList.add('on');play();}
-      sl._show=show;
-      var pb=sl.querySelector('.igp'),nb=sl.querySelector('.ign');
-      if(pb)pb.addEventListener('click',function(){show(k-1);});
-      if(nb)nb.addEventListener('click',function(){show(k+1);});
-    });
-    var th=document.querySelectorAll('#openGallery .thumbs img');
-    [].forEach.call(th,function(t,i){var q=slides[i]&&slides[i].querySelector('.igm');if(q)t.src=q.dataset.poster||q.dataset.src;});
-    document.querySelector('#gallery .eyebrow').textContent='@murcielaco on Instagram';
+    document.querySelector('#gallery .eyebrow').innerHTML='<a href="https://www.instagram.com/murcielaco/" target="_blank" rel="noopener" style="color:inherit">@murcielaco on Instagram</a>';
   }
-  if(IG_FEED){fetch(IG_FEED).then(function(r){return r.json();}).then(function(d){useFeed(Array.isArray(d)?d:(d.posts||[]));}).catch(function(){});}
   function load(){slides.forEach(function(s){[].forEach.call(s.querySelectorAll('[data-src]'),function(m){if(m.tagName==='VIDEO'){m.poster=m.dataset.poster;m.muted=true;}m.src=m.dataset.src;m.removeAttribute('data-src');});});}
   function idx(){return Math.round(track.scrollLeft/track.clientWidth);}
   function play(){
