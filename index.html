@@ -218,6 +218,16 @@ section.block{padding-block:clamp(64px,9vw,128px)}
 .track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:center;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:16px;min-width:0;padding-inline:4px}
 .slide a.ig{display:block;min-height:0;height:100%}
+.igbox{position:relative;min-height:0;height:100%}
+.igbox .igm{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .45s ease;pointer-events:none}
+.igbox .igm.on{opacity:1;pointer-events:auto}
+.igp,.ign{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer;z-index:2}
+.igp{left:8px}.ign{right:8px}
+.igp:hover,.ign:hover{border-color:#fff}
+.igd{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px;z-index:2}
+.igd i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35)}
+.igd i.on{background:#fff}
+.slide .cap a{font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone)}
 .slide img{width:100%;height:100%;object-fit:contain;min-height:0}
 .slide .cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 14px;text-align:center}
 .slide .cap b{font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px)}
@@ -327,7 +337,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
       <a class="forbes" href="https://www.forbes.com/sites/alainhunkins/2025/05/21/redefining-leadership-for-the-future-of-work/?ctpv=searchpage" target="_blank" rel="noopener"><img src="assets/logo-forbes.svg" alt="Forbes"></a>
       <a class="polly" href="https://www.pollypolymer.com/" target="_blank" rel="noopener"><img src="assets/logo-polly.svg" alt="Polly Polymer"></a>
       <a href="https://clo3d.com/" target="_blank" rel="noopener"><img src="assets/logo-clo.svg" alt="CLO"></a>
-      <a href="https://www.zellerfeld.com/collections/vampyro" target="_blank" rel="noopener"><img src="assets/logo-zellerfeld.svg" alt="Zellerfeld"></a>
+      <a href="https://help.zellerfeld.com/hc/en-us/articles/43458161334673-Get-help-from-Verified-Creators" target="_blank" rel="noopener"><img src="assets/logo-zellerfeld.svg" alt="Zellerfeld"></a>
       <a class="unreal" href="https://www.unrealengine.com/" target="_blank" rel="noopener"><img src="assets/logo-unreal.svg" alt="Unreal Engine"></a>
     </div>
   </div>
@@ -392,7 +402,8 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
 
 <div class="liquid" aria-hidden="true">
   <video autoplay muted loop playsinline preload="metadata" poster="assets/symbiosis-liquid-poster.jpg">
-    <source src="assets/symbiosis-liquid.webm" type="video/webm">
+    <source src="assets/symbiosis-liquid-av1.mp4" type='video/mp4; codecs="av01.0.12M.10"'>
+    <source src="assets/symbiosis-liquid-hevc.mp4" type='video/mp4; codecs="hvc1"'>
     <source src="assets/symbiosis-liquid.mp4" type="video/mp4">
   </video>
 </div>
@@ -610,31 +621,56 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
      While empty, the gallery shows the built-in images below. */
   var IG_FEED='https://feeds.behold.so/TX6r3tWiq2mqtTjvNeAC';
   function esc(t){var d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
+  function pic(m){return (m.sizes&&m.sizes.large&&m.sizes.large.mediaUrl)||m.thumbnailUrl||m.mediaUrl;}
+  function item(m,first){
+    var cls='igm'+(first?' on':'');
+    if(m.mediaType==='VIDEO'&&m.mediaUrl){
+      return '<video class="'+cls+'" muted loop playsinline preload="none" data-src="'+esc(m.mediaUrl)+'" data-poster="'+esc(m.thumbnailUrl||pic(m))+'"></video>';
+    }
+    return '<img class="'+cls+'" data-src="'+esc(pic(m))+'" alt="">';
+  }
   function useFeed(posts){
-    posts=posts.filter(function(p){return p&&(p.mediaUrl||p.thumbnailUrl||p.sizes);}).slice(0,24);
+    posts=posts.filter(function(p){return p&&(p.mediaUrl||p.thumbnailUrl||p.sizes||(p.children&&p.children.length));}).slice(0,24);
     if(!posts.length)return;
     track.innerHTML=posts.map(function(p){
-      var img=(p.sizes&&p.sizes.large&&p.sizes.large.mediaUrl)||p.thumbnailUrl||p.mediaUrl;
       var cap=(p.prunedCaption||p.caption||'').split('\n')[0].slice(0,90);
-      return '<figure class="slide"><a class="ig" href="'+esc(p.permalink)+'" target="_blank" rel="noopener"><img data-src="'+esc(img)+'" alt="'+esc(cap||'Instagram post by @murcielaco')+'"></a><figcaption class="cap"><b>'+(esc(cap)||'@murcielaco')+'</b><span>View on Instagram</span></figcaption></figure>';
+      var kids=(p.mediaType==='CAROUSEL_ALBUM'&&p.children&&p.children.length)?p.children:[p];
+      var media=kids.map(function(m,i){return item(m,i===0);}).join('');
+      var ctr=kids.length>1?'<button type="button" class="igp" aria-label="Previous photo">‹</button><button type="button" class="ign" aria-label="Next photo">›</button><div class="igd">'+kids.map(function(_,i){return '<i'+(i?'':' class="on"')+'></i>';}).join('')+'</div>':'';
+      return '<figure class="slide ig-post"><div class="igbox">'+media+ctr+'</div><figcaption class="cap"><b>'+(esc(cap)||'@murcielaco')+'</b><a href="'+esc(p.permalink)+'" target="_blank" rel="noopener">View on Instagram</a></figcaption></figure>';
     }).join('');
     slides=[].slice.call(track.querySelectorAll('.slide'));
+    slides.forEach(function(sl){
+      var ms=[].slice.call(sl.querySelectorAll('.igm')),dots=[].slice.call(sl.querySelectorAll('.igd i')),k=0;
+      function show(n){ms[k].classList.remove('on');if(dots[k])dots[k].classList.remove('on');k=(n+ms.length)%ms.length;ms[k].classList.add('on');if(dots[k])dots[k].classList.add('on');play();}
+      sl._show=show;
+      var pb=sl.querySelector('.igp'),nb=sl.querySelector('.ign');
+      if(pb)pb.addEventListener('click',function(){show(k-1);});
+      if(nb)nb.addEventListener('click',function(){show(k+1);});
+    });
     var th=document.querySelectorAll('#openGallery .thumbs img');
-    [].forEach.call(th,function(t,i){var q=slides[i]&&slides[i].querySelector('img');if(q)t.src=q.dataset.src;});
+    [].forEach.call(th,function(t,i){var q=slides[i]&&slides[i].querySelector('.igm');if(q)t.src=q.dataset.poster||q.dataset.src;});
     document.querySelector('#gallery .eyebrow').textContent='@murcielaco on Instagram';
   }
   if(IG_FEED){fetch(IG_FEED).then(function(r){return r.json();}).then(function(d){useFeed(Array.isArray(d)?d:(d.posts||[]));}).catch(function(){});}
-  function load(){slides.forEach(function(s){var i=s.querySelector('img');if(i.dataset.src){i.src=i.dataset.src;i.removeAttribute('data-src');}});}
+  function load(){slides.forEach(function(s){[].forEach.call(s.querySelectorAll('[data-src]'),function(m){if(m.tagName==='VIDEO'){m.poster=m.dataset.poster;m.muted=true;}m.src=m.dataset.src;m.removeAttribute('data-src');});});}
   function idx(){return Math.round(track.scrollLeft/track.clientWidth);}
-  function update(){count.textContent=(idx()+1)+' / '+slides.length;}
+  function play(){
+    var cur=slides[idx()];
+    [].forEach.call(track.querySelectorAll('video'),function(v){
+      var should=!gal.hidden&&cur&&cur.contains(v)&&(v.classList.contains('on')||!v.classList.contains('igm'));
+      if(should){var p=v.play();if(p&&p.catch)p.catch(function(){});}else if(!v.paused)v.pause();
+    });
+  }
+  function update(){count.textContent=(idx()+1)+' / '+slides.length;play();}
   function go(d){var n=Math.max(0,Math.min(slides.length-1,idx()+d));track.scrollTo({left:n*track.clientWidth,behavior:'smooth'});}
   function open(){load();gal.hidden=false;document.body.style.overflow='hidden';track.scrollLeft=0;update();track.focus();}
-  function close(){gal.hidden=true;document.body.style.overflow='';opener.focus();}
+  function close(){gal.hidden=true;document.body.style.overflow='';play();opener.focus();}
   opener.addEventListener('click',open);
   document.getElementById('closeGallery').addEventListener('click',close);
   document.getElementById('prev').addEventListener('click',function(){go(-1);});
   document.getElementById('next').addEventListener('click',function(){go(1);});
-  track.addEventListener('scroll',function(){window.requestAnimationFrame(update);});
+  var st;track.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(update,120);count.textContent=(idx()+1)+' / '+slides.length;});
   document.addEventListener('keydown',function(e){if(gal.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight'){e.preventDefault();go(1);}if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}});
 })();
 
