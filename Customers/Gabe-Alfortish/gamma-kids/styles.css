@@ -111,13 +111,7 @@ button { font: inherit; color: inherit; }
   position: relative;
   height: max(720px, min(calc(100svh - 100px), 64vw));
   padding: clamp(24px, 4vw, 56px) var(--gutter) 0;
-  --tile: clamp(110px, 12vw, 190px);
-  background-color: var(--pink-100);
-  background-image:
-    radial-gradient(120% 70% at 30% 0%, rgba(255,255,255,.65), transparent 60%),
-    radial-gradient(90% 60% at 50% 100%, rgba(240,61,143,.12), transparent 70%),
-    conic-gradient(#ffd0e4 0 25%, transparent 0 50%, #ffd0e4 0 75%, transparent 0);
-  background-size: auto, auto, calc(var(--tile) * 2) calc(var(--tile) * 2);
+  background: linear-gradient(#fff3f8, var(--pink-100) 45%);
   overflow: hidden;
   display: flex; flex-direction: column;
 }
@@ -165,6 +159,28 @@ button { font: inherit; color: inherit; }
 
 /* Scene — a foam play mat seen from above; the pairs lie on it, toys scattered around */
 .scene { position: absolute; inset: 0; z-index: 1; --u: clamp(38px, 5.1vw, 82px); }
+
+/* Foam play mat in perspective: tiles recede toward the top, matching the shoes' top-down camera */
+.mat {
+  --tile: clamp(110px, 11vw, 170px);
+  position: absolute; z-index: 0; pointer-events: none;
+  left: -80%; right: -80%; top: -60%; bottom: -4%;
+  transform-origin: 50% 100%;
+  transform: perspective(1200px) rotateX(46deg);
+  background-color: #ffe3ef;
+  background-image:
+    conic-gradient(#ffcbe1 0 25%, transparent 0 50%, #ffcbe1 0 75%, transparent 0);
+  background-size: calc(var(--tile) * 2) calc(var(--tile) * 2);
+  background-position: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, #000 62%, rgba(0,0,0,.55) 78%, transparent 92%);
+          mask-image: linear-gradient(to top, #000 62%, rgba(0,0,0,.55) 78%, transparent 92%);
+}
+.mat::after {
+  /* soft light from above, slightly darker toward the viewer */
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(60% 50% at 50% 40%, rgba(255,255,255,.45), transparent 70%),
+              linear-gradient(to bottom, transparent 60%, rgba(240,61,143,.10));
+}
 
 .pairs { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .pair {
@@ -379,6 +395,10 @@ button { font: inherit; color: inherit; }
 .gallery__thumbs button:hover { transform: translateY(-2px); }
 .gallery__thumbs button.is-active { border-color: var(--pink-500); }
 .gallery__thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.gallery__thumbs { scrollbar-width: thin; scrollbar-color: var(--pink-400) var(--pink-100); }
+.gallery__thumbs::-webkit-scrollbar { height: 6px; width: 6px; }
+.gallery__thumbs::-webkit-scrollbar-track { background: var(--pink-100); border-radius: 999px; }
+.gallery__thumbs::-webkit-scrollbar-thumb { background: var(--pink-400); border-radius: 999px; }
 
 /* ---------- Coming soon band ---------- */
 .soon { background: var(--pink-500); color: #fff; overflow: hidden; }
@@ -440,8 +460,8 @@ button { font: inherit; color: inherit; }
   .product, .product--flip { grid-template-columns: 1fr; }
   .product--flip .product__info { order: 0; }
   .gallery { grid-template-columns: 1fr; }
-  .gallery__thumbs { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
-  .gallery__thumbs button { flex: 0 0 72px; }
+  .gallery__thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; overflow: visible; }
+  .gallery__thumbs button { border-radius: 12px; border-width: 2px; }
 }
 @media (max-width: 600px) {
   .btn-museum__label { display: none; }
