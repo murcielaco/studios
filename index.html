@@ -654,6 +654,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
 (function(){
   var ims=[].slice.call(document.querySelectorAll('.deliver figure img.rot')),i=0;
   if(ims.length<2||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  ims[1].loading='eager';ims[1].decode&&ims[1].decode().catch(function(){});
   setInterval(function(){ims[i].classList.remove('on');i=(i+1)%ims.length;ims[i].loading='eager';ims[i].classList.add('on');ims[(i+1)%ims.length].loading='eager';},10000);
 })();
 </script>
