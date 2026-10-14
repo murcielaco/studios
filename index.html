@@ -6,6 +6,21 @@
 <title>MURCIELACO STUDIOS | Services</title>
 <meta name="description" content="Your own 3D printed footwear brand, approved on Zellerfeld and launch-ready in about one month. Designed by MURCIELACO STUDIOS.">
 <link rel="icon" href="assets/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MURCIELACO STUDIOS">
+<meta property="og:title" content="MURCIELACO STUDIOS | Services">
+<meta property="og:description" content="Your own 3D printed footwear brand, approved on Zellerfeld and launch-ready in about one month.">
+<meta property="og:url" content="https://studios.murcielaco.com/">
+<meta property="og:image" content="https://studios.murcielaco.com/assets/og-image.jpg">
+<meta property="og:image:secure_url" content="https://studios.murcielaco.com/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="White 3D printed shoe by MURCIELACO STUDIOS on black">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MURCIELACO STUDIOS | Services">
+<meta name="twitter:description" content="Your own 3D printed footwear brand, approved on Zellerfeld and launch-ready in about one month.">
+<meta name="twitter:image" content="https://studios.murcielaco.com/assets/og-image.jpg">
 <style>
 @font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-thin.woff2") format("woff2");font-weight:200;font-display:swap}
 @font-face{font-family:"Metal Bat";src:url("fonts/metal-bat-light.woff2") format("woff2");font-weight:300;font-display:swap}
@@ -232,8 +247,9 @@ section.block{padding-block:clamp(64px,9vw,128px)}
 .slide .cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 14px;text-align:center}
 .slide .cap b{font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px)}
 .slide .cap span{font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:var(--chrome);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:flow 7s linear infinite}
-.slide.ig-embed{grid-template-rows:minmax(0,1fr);place-items:center}
-.ig-embed iframe{display:block;height:100%;max-height:820px;aspect-ratio:400/690;width:auto;max-width:100%;border:0;border-radius:14px;background:#fff;color-scheme:light}
+.slide.ig-embed{display:flex;align-items:center;justify-content:center}
+.igwrap{position:relative;overflow:hidden;border-radius:12px;background:#0b0b0b;max-width:100%}
+.igwrap iframe{position:absolute;left:-1px;display:block;border:0;background:#0b0b0b;color-scheme:light}
 .gal-nav{display:flex;justify-content:center;align-items:center;gap:20px}
 .gal-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:var(--util);font-size:18px}
 .gal-nav button:hover{border-color:var(--signal);color:var(--signal)}
@@ -623,9 +639,32 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
   var IG_POSTS=["p/DPUTx77AQms","p/DdWc3Pkkfd-","p/DbCPbv6jndx","reel/DbCLwjBOyzp","p/DZHDxR9jkQN","p/DYkAlNSDg88","p/DYhdeR6DjDM","reel/DU6_JayDhDV","p/DU8VieSjiGE","reel/DVT4_9jDksA","p/DU0oTE7DtAM","p/DU5VJ6NDhoR","reel/DPUKiRlDUdC","reel/DSdN_2yEkxX","p/DQZcGl-jYhV","reel/DQZd_qFjWXs","reel/DRFFaKtDWLA","p/DHGu8xmib4q","reel/DLaOl4-s_Na","reel/DLYei-mPuGw","p/DITqQhAu8x5","reel/CwIdH3yBbMn","reel/DLSOg9IRQJS","p/DLfl7fcxr4Y","p/DU2hxfCDlca"];
   if(IG_POSTS.length){
     track.innerHTML=IG_POSTS.map(function(p,i){
-      return '<figure class="slide ig-embed"><iframe data-src="https://www.instagram.com/'+p+'/embed/" title="Instagram post '+(i+1)+' by @murcielaco" loading="lazy" allowtransparency="true" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write"></iframe></figure>';
+      return '<figure class="slide ig-embed"><div class="igwrap"><iframe data-src="https://www.instagram.com/'+p+'/embed/" title="Instagram post '+(i+1)+' by @murcielaco" loading="lazy" allowtransparency="true" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write"></iframe></div></figure>';
     }).join('');
     slides=[].slice.call(track.querySelectorAll('.slide'));
+    /* Show only the media: hide Instagram's header and footer bar by cropping the embed.
+       The embed reports its full height via postMessage; media = total - header - footer. */
+    var IGH=50, IGF=95;
+    function fit(sl){
+      var wrap=sl.querySelector('.igwrap'),f=wrap.querySelector('iframe');
+      var Ws=sl.clientWidth-8,Hs=sl.clientHeight;if(!Ws||!Hs)return;
+      var r=sl._r||1.25,w=Math.floor(Math.min(Ws,520,Hs/r));
+      if(sl._w!==w){sl._w=w;f.style.width=(w+2)+'px';}
+      var t=sl._t||(IGH+IGF+Math.round(w*r)+4),mh=Math.max(40,t-IGH-IGF);
+      f.style.height=t+'px';f.style.top=(-IGH)+'px';
+      wrap.style.width=w+'px';wrap.style.height=Math.min(mh,Hs)+'px';
+    }
+    window.addEventListener('message',function(e){
+      if(!/instagram\.com$/.test((e.origin||'').replace(/^https?:\/\//,'')))return;
+      var d=e.data;try{if(typeof d==='string')d=JSON.parse(d);}catch(_){return;}
+      if(!d||d.type!=='MEASURE'||!d.details||!d.details.height)return;
+      slides.forEach(function(sl){var f=sl.querySelector('iframe');if(f&&f.contentWindow===e.source){
+        sl._t=d.details.height;var mh=sl._t-IGH-IGF;if(sl._w&&mh>0)sl._r=mh/sl._w;
+        var Hs=sl.clientHeight;if(Hs&&mh>Hs+2){sl._t=0;}
+        fit(sl);}});
+    });
+    window._igfit=function(){slides.forEach(fit);};
+    window.addEventListener('resize',function(){if(!gal.hidden)window._igfit();});
     document.querySelector('#gallery .eyebrow').innerHTML='<a href="https://www.instagram.com/murcielaco/" target="_blank" rel="noopener" style="color:inherit">@murcielaco on Instagram</a>';
   }
   function load(){slides.forEach(function(s){[].forEach.call(s.querySelectorAll('[data-src]'),function(m){if(m.tagName==='VIDEO'){m.poster=m.dataset.poster;m.muted=true;}m.src=m.dataset.src;m.removeAttribute('data-src');});});}
@@ -639,7 +678,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
   }
   function update(){count.textContent=(idx()+1)+' / '+slides.length;play();}
   function go(d){var n=Math.max(0,Math.min(slides.length-1,idx()+d));track.scrollTo({left:n*track.clientWidth,behavior:'smooth'});}
-  function open(){load();gal.hidden=false;document.body.style.overflow='hidden';track.scrollLeft=0;update();track.focus();}
+  function open(){load();gal.hidden=false;document.body.style.overflow='hidden';track.scrollLeft=0;if(window._igfit)window._igfit();update();track.focus();}
   function close(){gal.hidden=true;document.body.style.overflow='';play();opener.focus();}
   opener.addEventListener('click',open);
   document.getElementById('closeGallery').addEventListener('click',close);
