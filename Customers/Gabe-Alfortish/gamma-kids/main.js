@@ -82,16 +82,8 @@
     revealables.forEach((el) => io.observe(el));
   }
 
-  // ----- Subtle parallax on the hero toys (desktop pointers only) -----
-  const scene = document.querySelector('.scene');
-  if (scene && matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const layer = scene.querySelector('.toys');
-    scene.addEventListener('pointermove', (e) => {
-      const r = scene.getBoundingClientRect();
-      const dx = (e.clientX - r.left) / r.width - 0.5;
-      const dy = (e.clientY - r.top) / r.height - 0.5;
-      layer.style.translate = `${dx * -18}px ${dy * -12}px`;
-    });
-    scene.addEventListener('pointerleave', () => { layer.style.translate = '0 0'; });
-  }
+  // ----- Toys drop onto the mat one after another -----
+  document.querySelectorAll('.toys .drop').forEach((el, i) => {
+    el.style.animationDelay = `${0.5 + i * 0.06}s`;
+  });
 })();

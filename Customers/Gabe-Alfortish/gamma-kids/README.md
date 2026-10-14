@@ -17,7 +17,7 @@ gamma-kids/
     ├── fonts/          # self-hosted Fredoka, Fraunces, Space Grotesk (OFL)
     ├── svg/            # GAMMA wordmark + "M" column logo (from gammamuseum.studio), favicon
     └── img/
-        ├── hero/       # background-removed shoes for the blocks (webp + png)
+        ├── hero/       # background-removed pairs lying on the play mat (webp + png)
         ├── lambo/      # gallery JPGs (xx.jpg = large, xx-sm.jpg = thumbnail)
         ├── magma/
         ├── squirrels/
@@ -26,11 +26,11 @@ gamma-kids/
 
 ## Models and renders used
 
-| Model | Hero (no background) | Gallery (in order) |
+| Model | Hero on the play mat (no background) | Gallery (in order) |
 |---|---|---|
-| LAMBO | `LAMBO (1)` | LAMBO, (6), (5), (2), (7), (8) |
-| MAGMA | `MAGMA (12)` | (14), (1), (10), (11), (15), (9) |
-| SQUIRRELS | `SQUIRRELS (2)` | (6), (10), (1), (7), (3), (8) |
+| LAMBO | `LAMBO` (pair, top view) | LAMBO, (6), (5), (2), (7), (8) |
+| MAGMA | `MAGMA (15)` (pair, top view) | (14), (1), (10), (11), (15), (9) |
+| SQUIRRELS | `SQUIRRELS (8)` (pair + sole, top view) | (6), (10), (1), (7), (3), (8) |
 
 Gallery images are JPG, 1800 px max (q90) plus 800 px thumbnails.
 
