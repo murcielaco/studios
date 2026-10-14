@@ -351,90 +351,83 @@
     ctx.closePath(); ctx.fill();
   }
 
-  // Top-down supercar: wedge nose, Y headlights, flared rear arches, hexagonal engine bay
-  // (which is the shoe's foot opening), side intakes, rear wing and quad exhausts.
-  function poly(pts) { ctx.beginPath(); pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.closePath(); }
-  const mirror = (pts) => pts.concat(pts.slice().reverse().map(([px, py]) => [-px, py]));
+  // Top-down supercar in a clean flat-illustration style (nose up):
+  // smooth yellow body, big dark windshield, side windows, roof vent, chevron engine louvres, mirrors.
+  function smooth(pts) {
+    // closed curve through the midpoints of a polygon (soft, rounded silhouette)
+    const n = pts.length, mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+    ctx.beginPath();
+    const m0 = mid(pts[n - 1], pts[0]);
+    ctx.moveTo(m0[0], m0[1]);
+    for (let i = 0; i < n; i++) { const p = pts[i], m = mid(p, pts[(i + 1) % n]); ctx.quadraticCurveTo(p[0], p[1], m[0], m[1]); }
+    ctx.closePath();
+  }
+  const mirror = (half) => half.concat(half.slice(1, -1).reverse().map(([px, py]) => [-px, py]));
+  // right half from nose centre to tail centre
+  const BODY = mirror([
+    [0, -58], [16, -58], [26, -52], [28, -38], [27, -24], [26, -8], [27, 8],
+    [30, 26], [30, 44], [27, 56], [17, 57], [9, 52], [0, 53],
+  ]);
 
   function drawCar(x, y, t) {
-    const Y = '#f7c63f', YD = '#d39a1f', YL = '#ffe08a', INK = '#2a0a22';
+    const INK = '#26213a';
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(Math.max(-0.35, Math.min(0.35, t)));
-    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
 
-    // shadow
-    ctx.fillStyle = 'rgba(58,11,46,.12)'; ctx.beginPath(); ell(2, 4, 33, 56, 0); ctx.fill();
+    // flat offset shadow (like the reference illustration)
+    ctx.save(); ctx.translate(8, 7); smooth(BODY); ctx.fillStyle = 'rgba(110,80,150,.25)'; ctx.fill(); ctx.restore();
 
-    // tyres (wide, mostly tucked under the body)
+    // mirrors (behind the body so they look attached)
+    ctx.fillStyle = '#e7a21c';
+    [1, -1].forEach((s) => { ctx.beginPath(); ell(s * 30, -20, 6, 3.2, s * -0.35); ctx.fill(); });
+
+    // body with sideways shading
+    smooth(BODY);
+    const g = ctx.createLinearGradient(-30, 0, 30, 0);
+    g.addColorStop(0, '#e39a14'); g.addColorStop(0.18, '#f7bf2e'); g.addColorStop(0.5, '#ffd54a');
+    g.addColorStop(0.82, '#f7bf2e'); g.addColorStop(1, '#e39a14');
+    ctx.fillStyle = g; ctx.fill();
+
+    // raised centre panel (hood + roof spine), slightly lighter
+    ctx.fillStyle = 'rgba(255,236,150,.55)';
+    smooth([[-12, -57], [12, -57], [16, -40], [15, 10], [12, 50], [-12, 50], [-15, 10], [-16, -40]]); ctx.fill();
+
+    // headlights
     ctx.fillStyle = INK;
-    [[-29, -27, 9, 20], [29, -27, 9, 20], [-31, 24, 11, 24], [31, 24, 11, 24]].forEach(([wx, wy, ww, wh]) => { rr(wx - ww / 2, wy - wh / 2, ww, wh, 3); ctx.fill(); });
+    [1, -1].forEach((s) => { ctx.beginPath(); ctx.moveTo(s * 13, -55); ctx.lineTo(s * 23, -52); ctx.lineTo(s * 21, -48); ctx.lineTo(s * 14, -50); ctx.closePath(); ctx.fill(); });
 
-    // body silhouette (right half, mirrored)
-    poly(mirror([[0, -60], [6, -60], [15, -54], [23, -44], [29, -30], [27, -14], [25, -2], [30, 8], [33, 20], [33, 34], [30, 44], [22, 50], [0, 50]]));
-    ctx.fillStyle = Y; ctx.fill();
-    ctx.strokeStyle = YD; ctx.lineWidth = 2; ctx.stroke();
+    // windshield
+    smooth([[-22, -42], [22, -42], [21, -30], [17, -21], [-17, -21], [-21, -30]]);
+    const wg = ctx.createLinearGradient(0, -42, 0, -21);
+    wg.addColorStop(0, '#3b3654'); wg.addColorStop(1, INK);
+    ctx.fillStyle = wg; ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.14)';
+    ctx.beginPath(); ctx.moveTo(-15, -39); ctx.lineTo(-4, -39); ctx.lineTo(-11, -25); ctx.lineTo(-17, -27); ctx.closePath(); ctx.fill();
 
-    // front splitter + intakes
+    // side windows (long thin strips)
     ctx.fillStyle = INK;
-    poly([[-6, -60], [6, -60], [9, -57], [-9, -57]]); ctx.fill();
-    poly([[11, -56], [20, -49], [16, -46], [9, -53]]); ctx.fill();
-    poly([[-11, -56], [-20, -49], [-16, -46], [-9, -53]]); ctx.fill();
-
-    // hood with two creases converging to the nose
-    ctx.fillStyle = YL;
-    poly([[-4, -56], [4, -56], [12, -26], [-12, -26]]); ctx.fill();
-    ctx.strokeStyle = YD; ctx.lineWidth = 1.4;
-    ctx.beginPath(); ctx.moveTo(-4, -56); ctx.lineTo(-14, -26); ctx.moveTo(4, -56); ctx.lineTo(14, -26); ctx.stroke();
-
-    // Y-shaped headlights
-    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2.4;
     [1, -1].forEach((s) => {
       ctx.beginPath();
-      ctx.moveTo(s * 13, -51); ctx.lineTo(s * 21, -44); ctx.lineTo(s * 26, -36);
-      ctx.moveTo(s * 21, -44); ctx.lineTo(s * 18, -38);
-      ctx.stroke();
+      ctx.moveTo(s * 22, -18); ctx.quadraticCurveTo(s * 25.5, -2, s * 24, 18);
+      ctx.lineTo(s * 21.5, 14); ctx.quadraticCurveTo(s * 22.5, -2, s * 20, -16); ctx.closePath(); ctx.fill();
     });
 
-    // windshield (the shoe's orange mesh)
-    poly([[-14, -24], [14, -24], [19, -7], [-19, -7]]);
-    ctx.fillStyle = '#f08a3c'; ctx.fill();
-    ctx.save(); ctx.clip();
-    ctx.strokeStyle = 'rgba(255,255,255,.32)'; ctx.lineWidth = 1;
-    for (let i = -44; i < 44; i += 5) { ctx.beginPath(); ctx.moveTo(i, -24); ctx.lineTo(i + 17, -7); ctx.moveTo(i + 17, -24); ctx.lineTo(i, -7); ctx.stroke(); }
-    ctx.restore();
-    ctx.strokeStyle = INK; ctx.lineWidth = 1.6; poly([[-14, -24], [14, -24], [19, -7], [-19, -7]]); ctx.stroke();
+    // roof vent
+    rr(-9, -2, 18, 7, 2); ctx.fill();
 
-    // roof
-    ctx.fillStyle = Y; poly([[-18, -6], [18, -6], [16, 8], [-16, 8]]); ctx.fill();
-    ctx.strokeStyle = YD; ctx.lineWidth = 1.4; ctx.stroke();
-
-    // side air intakes behind the doors
+    // engine cover with chevron louvres
     ctx.fillStyle = INK;
-    poly([[24, 0], [31, 10], [30, 18], [25, 9]]); ctx.fill();
-    poly([[-24, 0], [-31, 10], [-30, 18], [-25, 9]]); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-11, 20); ctx.lineTo(11, 20); ctx.lineTo(13, 46); ctx.lineTo(-13, 46); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#4a4466'; ctx.lineWidth = 2.2; ctx.lineJoin = 'round';
+    for (let k = 0; k < 3; k++) {
+      const cy = 26 + k * 7.5;
+      ctx.beginPath(); ctx.moveTo(-10.5 - k * 0.6, cy + 4); ctx.lineTo(0, cy); ctx.lineTo(10.5 + k * 0.6, cy + 4); ctx.stroke();
+    }
 
-    // hexagonal engine bay = the foot opening of the shoe
-    poly([[-15, 10], [15, 10], [20, 22], [15, 40], [-15, 40], [-20, 22]]);
-    ctx.fillStyle = YD; ctx.fill();
-    ctx.fillStyle = '#c9772e'; ctx.beginPath(); ell(0, 25, 12, 13, 0); ctx.fill();
-    ctx.fillStyle = '#9c561d'; ctx.beginPath(); ell(0, 27, 8, 9, 0); ctx.fill();
-    // louvres
-    ctx.strokeStyle = 'rgba(42,10,34,.45)'; ctx.lineWidth = 1.6;
-    for (let k = 0; k < 4; k++) { const ly = 14 + k * 7; ctx.beginPath(); ctx.moveTo(-19 + (k === 0 ? 2 : 0), ly); ctx.lineTo(-13, ly); ctx.moveTo(13, ly); ctx.lineTo(19 - (k === 0 ? 2 : 0), ly); ctx.stroke(); }
-
-    // rear wing
-    ctx.fillStyle = INK; rr(-24, 42, 48, 5, 2.5); ctx.fill();
-    // tail lights (thin Y)
-    ctx.strokeStyle = '#ff5fa8'; ctx.lineWidth = 2.4;
-    [1, -1].forEach((s) => { ctx.beginPath(); ctx.moveTo(s * 10, 48); ctx.lineTo(s * 22, 48); ctx.lineTo(s * 28, 43); ctx.moveTo(s * 22, 48); ctx.lineTo(s * 25, 44.5); ctx.stroke(); });
-    // quad exhausts
-    ctx.fillStyle = '#6b1d55';
-    [-6, -2, 2, 6].forEach((ex) => { ctx.beginPath(); circ(ex, 50.5, 1.8); ctx.fill(); });
-
-    // centre highlight
-    ctx.fillStyle = 'rgba(255,255,255,.35)';
-    ctx.beginPath(); ell(-9, -38, 2, 9, 0.25); ctx.fill();
+    // rim light on the nose
+    ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 1.5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(-10, -56.5); ctx.lineTo(10, -56.5); ctx.stroke();
     ctx.restore();
   }
 
