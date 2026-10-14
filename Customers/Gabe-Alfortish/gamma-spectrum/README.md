@@ -27,7 +27,7 @@ gamma-spectrum/
     ├── svg/     # Spectrum logo (mark, wordmark, lockup), GAMMA MUSEUM "M", favicon
     ├── video/   # 360° turntables per colorway: .mp4 (H.264) + .webm (VP9) + .jpg poster, 1080×1080, 8 s loops
     └── img/
-        ├── hero/      # background-removed side views for the hero (webp + png)
+        ├── hero/      # Marathon (Stone) cutouts for the hero: outsole floating behind, front 3/4 view in front (webp + png)
         ├── ampm/ marathon/ synapse/   # gallery JPGs (xx.jpg large, xx-sm.jpg thumb), square crops
         └── og.jpg
 ```
@@ -37,11 +37,11 @@ gamma-spectrum/
 Order on the page: MARATHON (running) → SYNAPSE (barefoot training) → AM/PM (casual, collab with AM:PM Gallery, https://ampmgallery.com/).
 Official colorway names: Stone (white), Black, Lilac (purple), Oat (cream).
 
-| Model | Hero (floating, Stone) | Gallery (in order) | 360° videos (colorway buttons) |
+| Model | Hero | Gallery (in order) | 360° videos (colorway buttons) |
 |---|---|---|---|
-| MARATHON | client-supplied Stone render | (3), (9), (1), (5), (10), (4) | MARATHON2 = Stone, MARATHON = Black |
-| SYNAPSE | client-supplied Stone render | (3), (10), (2), (4), (7), (9) | SYNAPSE2 = Stone, SYNAPSE = Black |
-| AM/PM | client-supplied close-up | AMPM (2), ampm (8), AMPM (6), ampm (10), AMPM (1), ampm (9) | AMPM2 = Lilac, AMPM = Oat |
+| MARATHON | outsole render (back, blurred) + front 3/4 render (front), both Stone | (3), (9), (1), (5), (10), (4) | MARATHON2 = Stone, MARATHON = Black |
+| SYNAPSE | — | (3), (10), (2), (4), (7), (9) | SYNAPSE2 = Stone, SYNAPSE = Black |
+| AM/PM | — | AMPM (2), ampm (8), AMPM (6), ampm (10), AMPM (1), ampm (9) | AMPM2 = Lilac, AMPM = Oat |
 
 ## Editing
 

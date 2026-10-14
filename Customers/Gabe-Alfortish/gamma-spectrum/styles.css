@@ -75,7 +75,7 @@ button { font: inherit; color: inherit; }
 .hero__copy { position: relative; z-index: 3; }
 .hero__title {
   margin: 18px 0 0; font-weight: 800; font-style: italic; text-transform: uppercase;
-  font-size: clamp(44px, 6.2vw, 112px); line-height: .88; letter-spacing: -.02em;
+  font-size: clamp(34px, 5.4vw, 104px); line-height: .88; letter-spacing: -.02em;
 }
 .hero__title span { color: var(--green); white-space: nowrap; }
 .hero__sub { margin: 18px 0 0; max-width: 460px; font-size: 17px; line-height: 1.55; color: #c9d1cc; }
@@ -83,32 +83,39 @@ button { font: inherit; color: inherit; }
 .hero__scroll span { display: inline-block; animation: nudge 1.6s ease-in-out infinite; color: var(--green); }
 @keyframes nudge { 50% { transform: translateY(4px); } }
 
-/* the three shoes, floating over the wireframe field */
+/* Marathon floating over the wireframe field: outsole far back, shoe up front */
 .hero { display: flex; flex-direction: column; }
-.floaters { position: relative; z-index: 2; flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; justify-items: center; gap: clamp(8px, 3vw, 56px); margin-top: clamp(8px, 2vw, 24px); padding: 0 2vw 70px; }
-.floater { position: relative; display: flex; flex-direction: column; align-items: center; text-decoration: none; animation: rise 1.2s cubic-bezier(.2,.9,.2,1) both; }
-.floater img { width: 100%; height: auto; max-height: 33vh; object-fit: contain; filter: drop-shadow(0 30px 30px rgba(0,0,0,.55)); animation: float 6s ease-in-out infinite; transition: transform .6s cubic-bezier(.2,.9,.2,1), filter .4s; }
-.floater--marathon { animation-delay: .1s; }
-.floater--synapse { animation-delay: .25s; }
-.floater--synapse img { animation-delay: -2s; width: 90%; margin-bottom: 4vh; }
-.floater--ampm { animation-delay: .4s; }
-.floater--ampm img { animation-delay: -4s; width: 78%; }
-.floater__shadow { width: 55%; height: 18px; margin-top: 10px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.75), transparent); animation: shadow 6s ease-in-out infinite; }
-.floater--synapse .floater__shadow { animation-delay: -2s; }
-.floater--ampm .floater__shadow { animation-delay: -4s; }
-.floater__tag {
-  margin-top: 14px; display: inline-flex; gap: 10px; align-items: baseline; white-space: nowrap;
-  font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
-  padding: 6px 12px; border-left: 2px solid var(--c); background: rgba(0,0,0,.45); transition: color .3s, background .3s;
+.stage { position: absolute; z-index: 2; right: 2vw; top: 4%; bottom: 3%; width: min(58vw, 980px); display: block; text-decoration: none; }
+.stage__sole {
+  position: absolute; right: 6%; top: 0; height: 66%; width: auto;
+  transform: rotate(24deg); opacity: .6; filter: blur(1.5px) brightness(.8) drop-shadow(0 40px 40px rgba(0,0,0,.6));
+  animation: floatBack 9s ease-in-out infinite, fadeIn 1.6s ease both;
 }
-.floater__tag b { font-weight: 800; font-size: 16px; letter-spacing: .02em; color: var(--white); }
-.floater:hover img, .floater:focus-visible img { transform: translateY(-22px) scale(1.04); animation-play-state: paused; filter: drop-shadow(0 50px 40px rgba(0,0,0,.45)); }
-.floater:hover .floater__tag, .floater:focus-visible .floater__tag { background: var(--c); color: var(--black); }
-.floater:hover .floater__tag b, .floater:focus-visible .floater__tag b { color: var(--black); }
-.floater:focus-visible { outline: none; }
-@keyframes float { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -14px; rotate: -1.5deg; } }
-@keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.8); opacity: .6; } }
+.stage__front {
+  position: absolute; left: 9%; bottom: 7%; width: 67%; height: auto;
+  filter: drop-shadow(0 50px 50px rgba(0,0,0,.65));
+  animation: floatFront 6s ease-in-out infinite, rise 1.2s cubic-bezier(.2,.9,.2,1) both;
+  transition: transform .6s cubic-bezier(.2,.9,.2,1);
+}
+.stage__shadow { position: absolute; left: 18%; bottom: 5%; width: 42%; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.8), transparent); animation: shadow 6s ease-in-out infinite; }
+.stage__tag {
+  position: absolute; left: 6%; bottom: 0; display: inline-flex; gap: 12px; align-items: baseline;
+  font-weight: 500; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute);
+  padding: 7px 14px; border-left: 2px solid var(--green); background: rgba(0,0,0,.5); transition: background .3s, color .3s;
+}
+.stage__tag b { font-weight: 800; font-size: 17px; letter-spacing: .02em; color: var(--white); }
+.stage__tag i { font-style: normal; color: var(--green); transition: transform .3s; }
+.stage:hover .stage__front, .stage:focus-visible .stage__front { transform: translateY(-18px) rotate(-2deg); }
+.stage:hover .stage__tag, .stage:focus-visible .stage__tag { background: var(--green); color: var(--black); }
+.stage:hover .stage__tag b, .stage:hover .stage__tag i, .stage:focus-visible .stage__tag b, .stage:focus-visible .stage__tag i { color: var(--black); }
+.stage:hover .stage__tag i { transform: translateX(4px); }
+.stage:focus-visible { outline: none; }
+@keyframes floatFront { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -16px; rotate: -1.5deg; } }
+@keyframes floatBack { 0%, 100% { translate: 0 0; } 50% { translate: 0 12px; } }
+@keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.82); opacity: .6; } }
 @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } }
+.hero__copy { max-width: 44vw; }
 
 /* music button */
 .music-btn { display: inline-flex; align-items: center; gap: 10px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--white); font-weight: 500; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
@@ -256,10 +263,11 @@ button { font: inherit; color: inherit; }
   .btn-museum__label { display: none; }
   .nav__word { width: 110px; }
   .hero { min-height: 0; padding-bottom: 40px; }
-  .floaters { grid-template-columns: 1fr; gap: 24px; padding-bottom: 30px; }
-  .floater--synapse img { margin-bottom: 0; }
-  .floater img { max-height: none; }
-  .floater--marathon img { width: 92%; } .floater--synapse { margin-bottom: 0; } .floater--synapse img { width: 76%; } .floater--ampm img { width: 66%; }
+  .hero__copy { max-width: none; }
+  .hero__title { font-size: 9.6vw; }
+  .stage { position: relative; right: auto; top: auto; bottom: auto; width: 100%; height: 108vw; margin-top: 8px; }
+  .stage__front { width: 92%; left: 0; bottom: 14%; }
+  .stage__sole { height: 64%; right: 2%; top: 0; }
   .hero__scroll { display: none; }
   .values { grid-template-columns: 1fr; }
   .values li:nth-child(even) { padding-left: 0; border-left: 0; }
