@@ -11,7 +11,8 @@ Static one-page site (HTML + CSS + JS, no build step). Status: **Coming soon**: 
 gamma-kids/
 ├── index.html          # page
 ├── styles.css          # all styles (palette and fonts at the top)
-├── main.js             # gallery, lightbox, scroll reveal, hero parallax
+├── main.js             # gallery, lightbox, scroll reveal, toy drop-in
+├── game.js             # LAMBO RUSH mini game (canvas + WebAudio, no dependencies)
 ├── netlify.toml        # hosting config (Netlify), optional
 └── assets/
     ├── fonts/          # self-hosted Fredoka, Fraunces, Space Grotesk (OFL)
@@ -33,6 +34,15 @@ gamma-kids/
 | SQUIRRELS | `SQUIRRELS (8)` (pair + sole, top view) | (6), (10), (1), (7), (3), (8) |
 
 Gallery images are JPG, 1800 px max (q90) plus 800 px thumbnails.
+
+## LAMBO RUSH (mini game, section `#play`)
+
+- 3-lane top-down runner drawn in `<canvas>` (logical 360×640, scales to any width).
+- Controls: ← → or A D on desktop (Space/Enter/W to start); tap left/right half, swipe, or the on-screen pads on phones.
+- Obstacles: squirrels and lava holes. Coins = +50. Distance adds points continuously; speed ramps from 250 to 820 px/s.
+- Music and sound effects are generated live with WebAudio (no audio files). Mute button remembers the choice.
+- Best score is kept in the visitor's browser (localStorage). The game pauses when scrolled out of view or the tab is hidden.
+- Tuning lives at the top of `update()` / `spawnRow()` in `game.js` (speed ramp, row gap, obstacle odds).
 
 ## Editing
 

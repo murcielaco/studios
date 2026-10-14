@@ -33,6 +33,7 @@
       <a href="#lambo">Lambo</a>
       <a href="#magma">Magma</a>
       <a href="#squirrels">Squirrels</a>
+      <a href="#play" class="nav__play">Play</a>
     </nav>
     <a class="btn-museum" href="https://www.gammamuseum.studio/">
       <span class="btn-museum__arrow" aria-hidden="true">←</span>
@@ -220,6 +221,48 @@
       </div>
     </section>
 
+    <!-- ARCADE: Lambo Rush mini game -->
+    <section class="arcade" id="play">
+      <div class="arcade__info">
+        <p class="arcade__kicker"><span class="badge-block" style="--c:#ff5fa8">★</span> GAMMA KIDS Arcade</p>
+        <h2 class="arcade__title">Lambo<br>Rush</h2>
+        <p class="arcade__lead">Take LAMBO for a spin. Switch lanes, dodge whatever is on the road and grab every coin you can. The longer you last, the faster it goes.</p>
+        <ul class="arcade__rules">
+          <li><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="12" rx="9" ry="10" fill="#f2b07a"/><ellipse cx="20" cy="22" rx="9" ry="10" fill="#e8935a"/><circle cx="20" cy="29" r="7" fill="#e8935a"/><circle cx="17" cy="29" r="1.6" fill="#3a0b2e"/><circle cx="23" cy="29" r="1.6" fill="#3a0b2e"/></svg><span><b>Squirrels</b> crossing the road. Don't hit them.</span></li>
+          <li><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="21" rx="17" ry="12" fill="#6b1d55"/><ellipse cx="20" cy="21" rx="12" ry="8" fill="#ff8a3d"/><ellipse cx="18" cy="20" rx="5" ry="3" fill="#fff17a"/></svg><span><b>Lava holes</b> on the road. Steer around them.</span></li>
+          <li><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="13" fill="#e8a91c"/><circle cx="20" cy="20" r="10" fill="#ffd23f"/><text x="20" y="25" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="13" fill="#e8a91c">G</text></svg><span><b>Coins</b> are worth +50 points each.</span></li>
+        </ul>
+        <div class="arcade__keys">
+          <span class="key">←</span><span class="key">→</span><span class="arcade__or">or</span><span class="key">A</span><span class="key">D</span>
+          <span class="arcade__keys-note">On a phone, tap the left or right side of the screen.</span>
+        </div>
+        <p class="arcade__best">Best score <b data-best>0</b></p>
+      </div>
+
+      <div class="game" data-game>
+        <div class="game__screen">
+          <canvas width="360" height="640" tabindex="0" aria-label="Lambo Rush game. Use the left and right arrow keys or A and D to switch lanes."></canvas>
+          <div class="game__overlay">
+            <p class="game__ov-kicker">GAMMA KIDS Arcade</p>
+            <h3 class="game__ov-title">Lambo Rush</h3>
+            <p class="game__ov-text">Press <b>← →</b> or <b>A D</b> to switch lanes.<br>On a phone, tap left or right.</p>
+            <button class="game__ov-btn" type="button">Start</button>
+          </div>
+        </div>
+        <div class="game__bar">
+          <button class="game__mute" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Sound on</span>
+          </button>
+          <span class="game__brand">GAMMA <i></i> KIDS</span>
+        </div>
+        <div class="game__pads">
+          <button type="button" data-pad="left" aria-label="Move left">◀</button>
+          <button type="button" data-pad="right" aria-label="Move right">▶</button>
+        </div>
+      </div>
+    </section>
+
     <!-- COMING SOON band -->
     <section class="soon">
       <div class="soon__marquee" aria-hidden="true">
@@ -341,5 +384,6 @@
   </svg>
 
   <script src="main.js" defer></script>
+  <script src="game.js" defer></script>
 </body>
 </html>
