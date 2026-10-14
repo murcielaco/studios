@@ -262,7 +262,7 @@
     tilt += (((carX - prev) / Math.max(dt, 0.001)) * 0.0009 - tilt) * Math.min(1, dt * 12);
 
     // exhaust
-    if (Math.random() < 0.6) puffs.push({ x: carX + (Math.random() - 0.5) * 16, y: CAR_Y + 48, r: 4 + Math.random() * 4, life: 0.5, max: 0.5 });
+    if (Math.random() < 0.6) puffs.push({ x: carX + (Math.random() - 0.5) * 16, y: CAR_Y + 56, r: 4 + Math.random() * 4, life: 0.5, max: 0.5 });
     puffs.forEach((p) => { p.y += (speed * 0.55) * dt; p.r += 14 * dt; p.life -= dt; });
     puffs = puffs.filter((p) => p.life > 0);
     sparks.forEach((s) => { s.life -= dt; s.x += s.vx * dt; s.y += s.vy * dt; s.vy += 500 * dt; });
@@ -369,7 +369,37 @@
     [30, 26], [30, 44], [27, 56], [17, 57], [9, 52], [0, 53],
   ]);
 
+  // Car sprite: MURCIELACO's own top-down Lambo illustration (nose up).
+  // Falls back to the vector car below until the image has loaded.
+  const carImg = new Image();
+  let carShadow = null;
+  carImg.onload = () => {
+    const c = document.createElement('canvas');
+    c.width = carImg.naturalWidth; c.height = carImg.naturalHeight;
+    const cx = c.getContext('2d');
+    cx.drawImage(carImg, 0, 0);
+    cx.globalCompositeOperation = 'source-in';
+    cx.fillStyle = 'rgba(110,80,150,.28)'; cx.fillRect(0, 0, c.width, c.height);
+    carShadow = c;
+  };
+  carImg.src = 'assets/img/game/lambo-car.png';
+  const CAR_W = 60;
+
   function drawCar(x, y, t) {
+    if (carImg.complete && carImg.naturalWidth && carShadow) {
+      const h = CAR_W * carImg.naturalHeight / carImg.naturalWidth;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(Math.max(-0.35, Math.min(0.35, t)));
+      ctx.drawImage(carShadow, -CAR_W / 2 + 7, -h / 2 + 6, CAR_W, h);
+      ctx.drawImage(carImg, -CAR_W / 2, -h / 2, CAR_W, h);
+      ctx.restore();
+      return;
+    }
+    drawCarVector(x, y, t);
+  }
+
+  function drawCarVector(x, y, t) {
     const INK = '#26213a';
     ctx.save();
     ctx.translate(x, y);

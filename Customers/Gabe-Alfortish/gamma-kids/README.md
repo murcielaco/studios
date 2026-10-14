@@ -37,6 +37,7 @@ Gallery images are JPG, 1800 px max (q90) plus 800 px thumbnails.
 
 ## LAMBO RUSH (mini game, section `#play`)
 
+- The car is MURCIELACO's own illustration (`assets/img/game/lambo-car.png`, nose up). A vector fallback is drawn until it loads.
 - 3-lane top-down runner drawn in `<canvas>` (logical 360×640, scales to any width).
 - Controls: ← → or A D on desktop (Space/Enter/W to start); tap left/right half, swipe, or the on-screen pads on phones.
 - Obstacles: squirrels and lava holes. Coins = +50. Distance adds points continuously; speed ramps from 250 to 820 px/s.
