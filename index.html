@@ -104,7 +104,7 @@ section.block{padding-block:clamp(64px,9vw,128px)}
 .deliver figure img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .deliver figure img.rot{opacity:0;transition:opacity 1.6s ease}
 .deliver figure img.rot.on{opacity:1}
-.deliver figure figcaption{position:absolute;left:18px;bottom:16px;font-family:var(--util);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--bone);background:rgba(0,0,0,.6);padding:7px 10px;border-radius:6px}
+.deliver figure figcaption{position:absolute;left:10px;bottom:10px;font-family:var(--util);font-size:8px;line-height:1;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(0,0,0,.4);padding:4px 6px;border-radius:4px;z-index:2}
 .items{display:grid;border-top:1px solid var(--line);align-content:start}
 .item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;padding-block:22px;border-bottom:1px solid var(--line)}
 .item svg{width:22px;height:22px;stroke:var(--signal);fill:none;stroke-width:1.4;margin-top:3px}
@@ -620,7 +620,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
       count=document.getElementById('count'), opener=document.getElementById('openGallery');
   var slides=[].slice.call(track.querySelectorAll('.slide'));
   /* Latest 25 posts from instagram.com/murcielaco (grid order, incl. collabs). Official Instagram embeds. */
-  var IG_POSTS=["p/DPUTx77AQms","reel/DHYwg3Zu5FL","p/DdWc3Pkkfd-","p/DbCPbv6jndx","reel/DbCLwjBOyzp","p/DZHDxR9jkQN","p/DYkAlNSDg88","p/DYhdeR6DjDM","reel/DU6_JayDhDV","p/DU8VieSjiGE","reel/DVT4_9jDksA","p/DU0oTE7DtAM","p/DU5VJ6NDhoR","reel/DPUKiRlDUdC","reel/DSdN_2yEkxX","p/DQZcGl-jYhV","reel/DQZd_qFjWXs","reel/DRFFaKtDWLA","p/DHGu8xmib4q","reel/DLaOl4-s_Na","reel/DLYei-mPuGw","p/DITqQhAu8x5","reel/CwIdH3yBbMn","reel/DLSOg9IRQJS","p/DLfl7fcxr4Y"];
+  var IG_POSTS=["p/DPUTx77AQms","p/DdWc3Pkkfd-","p/DbCPbv6jndx","reel/DbCLwjBOyzp","p/DZHDxR9jkQN","p/DYkAlNSDg88","p/DYhdeR6DjDM","reel/DU6_JayDhDV","p/DU8VieSjiGE","reel/DVT4_9jDksA","p/DU0oTE7DtAM","p/DU5VJ6NDhoR","reel/DPUKiRlDUdC","reel/DSdN_2yEkxX","p/DQZcGl-jYhV","reel/DQZd_qFjWXs","reel/DRFFaKtDWLA","p/DHGu8xmib4q","reel/DLaOl4-s_Na","reel/DLYei-mPuGw","p/DITqQhAu8x5","reel/CwIdH3yBbMn","reel/DLSOg9IRQJS","p/DLfl7fcxr4Y","p/DU2hxfCDlca"];
   if(IG_POSTS.length){
     track.innerHTML=IG_POSTS.map(function(p,i){
       return '<figure class="slide ig-embed"><iframe data-src="https://www.instagram.com/'+p+'/embed/" title="Instagram post '+(i+1)+' by @murcielaco" loading="lazy" allowtransparency="true" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write"></iframe></figure>';
