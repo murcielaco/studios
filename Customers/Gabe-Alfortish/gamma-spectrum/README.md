@@ -27,7 +27,7 @@ gamma-spectrum/
     ├── svg/     # Spectrum logo (mark, wordmark, lockup), GAMMA MUSEUM "M", favicon
     ├── video/   # 360° turntables per colorway: .mp4 (H.264) + .webm (VP9) + .jpg poster, 1080×1080, 8 s loops
     └── img/
-        ├── hero/      # Marathon (Stone) cutouts for the hero: outsole floating behind, front 3/4 view in front (webp + png)
+        ├── hero/      # Marathon (Stone) front 3/4 cutout floating in the hero (webp + png)
         ├── ampm/ marathon/ synapse/   # gallery JPGs (xx.jpg large, xx-sm.jpg thumb), square crops
         └── og.jpg
 ```
@@ -39,7 +39,7 @@ Official colorway names: Stone (white), Black, Lilac (purple), Oat (cream).
 
 | Model | Hero | Gallery (in order) | 360° videos (colorway buttons) |
 |---|---|---|---|
-| MARATHON | outsole render (back, blurred) + front 3/4 render (front), both Stone | (3), (9), (1), (5), (10), (4) | MARATHON2 = Stone, MARATHON = Black |
+| MARATHON | front 3/4 render, Stone, background removed | (3), (9), (1), (5), (10), (4) | MARATHON2 = Stone, MARATHON = Black |
 | SYNAPSE | — | (3), (10), (2), (4), (7), (9) | SYNAPSE2 = Stone, SYNAPSE = Black |
 | AM/PM | — | AMPM (2), ampm (8), AMPM (6), ampm (10), AMPM (1), ampm (9) | AMPM2 = Lilac, AMPM = Oat |
 

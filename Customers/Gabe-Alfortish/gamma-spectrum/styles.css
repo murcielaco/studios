@@ -75,7 +75,7 @@ button { font: inherit; color: inherit; }
 .hero__copy { position: relative; z-index: 3; }
 .hero__title {
   margin: 18px 0 0; font-weight: 800; font-style: italic; text-transform: uppercase;
-  font-size: clamp(34px, 5.4vw, 104px); line-height: .88; letter-spacing: -.02em;
+  font-size: clamp(34px, 4.7vw, 96px); line-height: .88; letter-spacing: -.02em;
 }
 .hero__title span { color: var(--green); white-space: nowrap; }
 .hero__sub { margin: 18px 0 0; max-width: 460px; font-size: 17px; line-height: 1.55; color: #c9d1cc; }
@@ -83,23 +83,26 @@ button { font: inherit; color: inherit; }
 .hero__scroll span { display: inline-block; animation: nudge 1.6s ease-in-out infinite; color: var(--green); }
 @keyframes nudge { 50% { transform: translateY(4px); } }
 
-/* Marathon floating over the wireframe field: outsole far back, shoe up front */
-.hero { display: flex; flex-direction: column; }
-.stage { position: absolute; z-index: 2; right: 2vw; top: 4%; bottom: 3%; width: min(58vw, 980px); display: block; text-decoration: none; }
-.stage__sole {
-  position: absolute; right: 10%; top: 4%; height: 40%; width: auto;
-  transform: rotate(24deg); filter: drop-shadow(0 30px 30px rgba(0,0,0,.6));
-  animation: floatBack 9s ease-in-out infinite, fadeIn 1.6s ease both;
-}
+/* Hero: copy + model index on the left, Marathon floating on the right */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; column-gap: 2vw; padding-bottom: 56px; }
+.hero__copy { max-width: 640px; }
+.hero__index { list-style: none; margin: 34px 0 0; padding: 0; max-width: 460px; border-top: 1px solid rgba(255,255,255,.12); }
+.hero__index li { border-bottom: 1px solid rgba(255,255,255,.12); }
+.hero__index a { display: grid; grid-template-columns: 40px auto 1fr; align-items: baseline; gap: 14px; padding: 13px 4px; color: var(--white); text-decoration: none; transition: padding .3s, color .3s; }
+.hero__index span { font-size: 12px; letter-spacing: .14em; color: var(--green); }
+.hero__index b { font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: .01em; }
+.hero__index em { justify-self: end; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.hero__index a:hover { padding-left: 14px; color: var(--green); }
+.stage { position: relative; z-index: 2; display: block; aspect-ratio: 995 / 960; width: min(100%, 900px, calc((100svh - 230px) * 1.04)); justify-self: center; text-decoration: none; }
 .stage__front {
-  position: absolute; left: 9%; bottom: 7%; width: 67%; height: auto;
+  position: absolute; left: 0; top: 4%; width: 100%; height: auto;
   filter: drop-shadow(0 50px 50px rgba(0,0,0,.65));
   animation: floatFront 6s ease-in-out infinite, rise 1.2s cubic-bezier(.2,.9,.2,1) both;
   transition: transform .6s cubic-bezier(.2,.9,.2,1);
 }
-.stage__shadow { position: absolute; left: 18%; bottom: 5%; width: 42%; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.8), transparent); animation: shadow 6s ease-in-out infinite; }
+.stage__shadow { position: absolute; left: 22%; bottom: 7%; width: 52%; height: 28px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.85), transparent); animation: shadow 6s ease-in-out infinite; }
 .stage__tag {
-  position: absolute; left: 6%; bottom: 0; display: inline-flex; gap: 12px; align-items: baseline;
+  position: absolute; right: 6%; bottom: 0; display: inline-flex; gap: 12px; align-items: baseline;
   font-weight: 500; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute);
   padding: 7px 14px; border-left: 2px solid var(--green); background: rgba(0,0,0,.5); transition: background .3s, color .3s;
 }
@@ -111,11 +114,8 @@ button { font: inherit; color: inherit; }
 .stage:hover .stage__tag i { transform: translateX(4px); }
 .stage:focus-visible { outline: none; }
 @keyframes floatFront { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -16px; rotate: -1.5deg; } }
-@keyframes floatBack { 0%, 100% { translate: 0 0; } 50% { translate: 0 12px; } }
 @keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.82); opacity: .6; } }
 @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
-@keyframes fadeIn { from { opacity: 0; } }
-.hero__copy { max-width: 44vw; }
 
 /* music button */
 .music-btn { display: inline-flex; align-items: center; gap: 10px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--white); font-weight: 500; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
@@ -257,17 +257,19 @@ button { font: inherit; color: inherit; }
   .manifesto__inner { grid-template-columns: 1fr; }
   .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .values li:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .stage { width: min(100%, 680px); margin-top: 24px; }
   .values li:nth-child(even) { padding-left: 20px; border-left: 1px solid rgba(0,0,0,.25); }
 }
 @media (max-width: 640px) {
   .btn-museum__label { display: none; }
   .nav__word { width: 110px; }
-  .hero { min-height: 0; padding-bottom: 40px; }
+  .hero { min-height: 0; padding-bottom: 40px; grid-template-columns: 1fr; }
   .hero__copy { max-width: none; }
   .hero__title { font-size: 9.6vw; }
-  .stage { position: relative; right: auto; top: auto; bottom: auto; width: 100%; height: 108vw; margin-top: 8px; }
-  .stage__front { width: 92%; left: 0; bottom: 14%; }
-  .stage__sole { height: 40%; right: 6%; top: 2%; }
+  .stage { width: 100%; }
+  .stage { margin-top: 18px; }
+  .stage__tag { right: auto; left: 0; }
   .hero__scroll { display: none; }
   .values { grid-template-columns: 1fr; }
   .values li:nth-child(even) { padding-left: 0; border-left: 0; }
