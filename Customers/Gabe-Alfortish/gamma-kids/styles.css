@@ -62,8 +62,9 @@ button { font: inherit; color: inherit; }
   letter-spacing: .14em;
   padding: 9px 0;
 }
-.ticker__track { display: inline-flex; gap: 22px; animation: marquee 28s linear infinite; }
-.ticker__track i { font-style: normal; color: var(--pink-500); }
+.ticker__track { display: inline-flex; align-items: center; gap: 22px; animation: marquee 28s linear infinite; }
+.ticker__track span { line-height: 1; }
+.ticker__track i { font-style: normal; color: var(--pink-500); line-height: 1; display: inline-block; font-size: 12px; transform: translateY(0.02em); }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Nav ---------- */
