@@ -644,7 +644,7 @@ footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;a
     slides=[].slice.call(track.querySelectorAll('.slide'));
     /* Show only the media: hide Instagram's header and footer bar by cropping the embed.
        The embed reports its full height via postMessage; media = total - header - footer. */
-    var IGH=50, IGF=95;
+    var IGH=55, IGF=156;
     function fit(sl){
       var wrap=sl.querySelector('.igwrap'),f=wrap.querySelector('iframe');
       var Ws=sl.clientWidth-8,Hs=sl.clientHeight;if(!Ws||!Hs)return;
