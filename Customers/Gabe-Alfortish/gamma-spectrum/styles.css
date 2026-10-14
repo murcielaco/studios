@@ -87,8 +87,8 @@ button { font: inherit; color: inherit; }
 .hero { display: flex; flex-direction: column; }
 .stage { position: absolute; z-index: 2; right: 2vw; top: 4%; bottom: 3%; width: min(58vw, 980px); display: block; text-decoration: none; }
 .stage__sole {
-  position: absolute; right: 6%; top: 0; height: 66%; width: auto;
-  transform: rotate(24deg); opacity: .6; filter: blur(1.5px) brightness(.8) drop-shadow(0 40px 40px rgba(0,0,0,.6));
+  position: absolute; right: 10%; top: 4%; height: 40%; width: auto;
+  transform: rotate(24deg); filter: drop-shadow(0 30px 30px rgba(0,0,0,.6));
   animation: floatBack 9s ease-in-out infinite, fadeIn 1.6s ease both;
 }
 .stage__front {
@@ -267,7 +267,7 @@ button { font: inherit; color: inherit; }
   .hero__title { font-size: 9.6vw; }
   .stage { position: relative; right: auto; top: auto; bottom: auto; width: 100%; height: 108vw; margin-top: 8px; }
   .stage__front { width: 92%; left: 0; bottom: 14%; }
-  .stage__sole { height: 64%; right: 2%; top: 0; }
+  .stage__sole { height: 40%; right: 6%; top: 2%; }
   .hero__scroll { display: none; }
   .values { grid-template-columns: 1fr; }
   .values li:nth-child(even) { padding-left: 0; border-left: 0; }
